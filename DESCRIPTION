@@ -19,8 +19,8 @@ Imports:
     tibble,
     rvest (>= 0.3.6),
     xml2 (>= 1.3.2),
-    stringr (>= 1.4.0),
-    purrr (>= 0.3.4)
+    purrr (>= 0.3.4),
+    usethis (>= 2.0.0)
 RdMacros:
     lifecycle
 
