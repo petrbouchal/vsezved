@@ -4,7 +4,7 @@
 \name{skolnik-package}
 \alias{skolnik}
 \alias{skolnik-package}
-\title{skolnik: What the Package Does (One Line, Title Case)}
+\title{skolnik: Get data on Czech schools from <https://uiv.cz/> and <https://data.msmt.cz/>}
 \description{
 What the package does (one paragraph).
 }

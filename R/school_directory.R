@@ -24,13 +24,13 @@ sk_get_directory_responses <- function(tables, ...) {
 
   if(any(!tables %in% available_tables)) {
     wrong_tables <- tables[!tables %in% available_tables]
-    usethis::ui_stop("Table(s) {usethis::ui_value(wrong_tables)} not available")
+    ui_stop("Table(s) {ui_value(wrong_tables)} not available")
   }
 
   if(is.null(tables)) {
     tabs <- c("addresses")
-    usethis::ui_info(c("No {usethis::ui_field('tables')} param set.",
-                       "Using {usethis::ui_value('addresses')}."))
+    ui_info(c("No {ui_field('tables')} param set.",
+                       "Using {ui_value('addresses')}."))
   } else {
     tabs <- tables
   }

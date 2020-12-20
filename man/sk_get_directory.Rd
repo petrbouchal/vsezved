@@ -4,17 +4,12 @@
 \alias{sk_get_directory}
 \title{Get school directory}
 \usage{
-sk_get_directory(
-  tables = NULL,
-  fields = NULL,
-  return_tibbles = FALSE,
-  keep_files = TRUE
-)
+sk_get_directory(tables = NULL, ..., return_tibbles = FALSE, keep_files = TRUE)
 }
 \arguments{
 \item{tables}{a character vector of tables to retrieve. See Details.}
 
-\item{fields}{a named character vector of search fields. Use \code{sk_get_search_fields()}
+\item{...}{key-value paries of search fields. Use \code{sk_get_search_fields()}
 to see a list of fields and their potential values.}
 
 \item{return_tibbles}{Whether to return the data (if TRUE) or only download the files (if FALSE).}
@@ -22,11 +17,12 @@ to see a list of fields and their potential values.}
 \item{keep_files}{Whether to write the XLS files locally.}
 }
 \value{
-if return_tibbles is TRUE, a named list of \link[tibble:tibble-package]{tibbles},
-with a tibble for each table in \code{tables} with the corresponding name; otherwise a character vector of file paths.
-Note that the resulting XLS files are in fact HTML files and you are best off
-loading them using \code{sk_load_directory()} and tidying with \code{sk_process_directory},
-though they can be opened in Excel too.
+if return_tibbles is TRUE, a named list of
+\link[tibble:tibble-package]{tibbles}, with a tibble for each table in \code{tables}
+with the corresponding name; otherwise a character vector of file paths.
+Note that the resulting XLS files are in fact HTML files and you are best
+off loading them using \code{sk_load_directory()} and tidying with
+\code{sk_process_directory}, though they can be opened in Excel too.
 }
 \description{
 \lifecycle{experimental}
@@ -68,18 +64,21 @@ it would be done manually.
 To avoid blitzing the data provider's server with many heavy requests:
 \enumerate{
 \item If you need more tables based on the same search, pass it in one call,
-using the \code{tables} argument. This means that only one initial search is peformed.
+using the \code{tables} argument. This means that only one initial search is
+peformed.
 \item Only ask for the tables you need.
-\item If you need a subset of the data, use the \code{fields} argument
-\item If you need multiple subsets of the data, try to do that via the \code{fields}
-argument too, though that may not always be possible.
-\item If you are downloading a large dump and reusing it in a pipeline, keep the
-downloaded XLS files (or your own export) locally (setting \code{keep_files} to TRUE),
-use caching and avoid calling this function repeatedly (ideally make any reruns
-conditional on the age of the stored export).
+\item If you need a subset of the
+data, use the \code{fields} argument
+\item If you need multiple subsets of the data,
+try to do that via the \code{fields} argument too, though that may not always be
+possible.
+\item If you are downloading a large dump and reusing it in a
+pipeline, keep the downloaded XLS files (or your own export) locally (setting
+\code{keep_files} to TRUE), use caching and avoid calling this function repeatedly
+(ideally make any reruns conditional on the age of the stored export).
 }
 }
 }
 \examples{
-sk_get_directory("addresses", fields = c(uzemi = "CZ010"), return_tibbles = T, write_files = T)
+sk_get_directory("addresses", uzemi = "CZ010", return_tibbles = T, write_files = T)
 }
