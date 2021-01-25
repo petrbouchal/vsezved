@@ -2,6 +2,7 @@
 
 export("%>%")
 export(vz_get_directory)
+export(vz_load_register)
 importFrom(dplyr,ends_with)
 importFrom(dplyr,filter)
 importFrom(dplyr,matches)

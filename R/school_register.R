@@ -34,8 +34,7 @@ vz_get_register_xml <- function(dataset_id = "rejstrik-skol-a-skolskych-zarizeni
 #' @param tables DESCRIPTION.
 #'
 #' @return RETURN_DESCRIPTION
-#' @examples
-#' # ADD_EXAMPLES_HERE
+#' @export
 vz_load_register <- function(dl_path, tables = "organisations") {
 
   available_tables <- c("organisations", "schools", "locations",
