@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# vsezved
+# vsezved <a href='http://petrbouchal.xyz/vsezved'><img src='man/figures/logo.png' align="right" height="138" /></a>
 
 <!-- badges: start -->
 
@@ -20,6 +20,10 @@ It will also provide vignettes documenting the data.
 
 Full documentation is at
 [petrbouchal.xyz/vsezved](https://petrbouchal.xyz/vsezved).
+
+Intro blogpost in Czech is at
+[petrbouchal.xyz/cz/post/vsezved](https://petrbouchal.xyz/post/vsezved)
+
 ## Installation
 
 It is not currently on CRAN.
@@ -49,3 +53,18 @@ library(vsezved)
 ## Alternative workflow
 
 The package supports two approaches … TO DO
+
+## Credits
+
+### Data sources
+
+Not affiliated with the Czech Ministry of Education or the Education
+Information Authority who publish the data. Their people however deserve
+credit for getting the data out there.
+
+### Name and logo
+
+Všezvěd is a pilgrim’s guide in a book by the well known Czech
+educationalist Comenius called *Labyrinth of the World and Paradise of
+the Heart*. The image in the logo comes from his other book, Orbis
+Pictus, and depicts a school…
