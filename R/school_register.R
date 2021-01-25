@@ -86,10 +86,13 @@ vz_load_register <- function(dl_path, tables = "organisations") {
     unnest_longer(SkolaKapacitaJednotka) %>%
     unnest_longer(SkolaJazyk) %>%
     unnest_longer(IZO) %>%
-    mutate(SkolaKapacita = dplyr::na_if(SkolaKapacita, "neuvádí se")) %>%
+    mutate(SkolaKapacita = dplyr::if_else(grepl("[a-zA-Z]",
+                                                         SkolaKapacita),
+                                          NA_character_,
+                                          SkolaKapacita)) %>%
     mutate(SkolaKapacita = dplyr::if_else(!is.na(SkolaKapacita),
-                                           as.integer(SkolaKapacita),
-                                           NA_integer_)) %>%
+                                          as.integer(SkolaKapacita),
+                                          NA_integer_)) %>%
     rename(izo = IZO) %>%
     select(-dplyr::starts_with("SkolaDatum"),
            -dplyr::matches("Mista|Obor"))
