@@ -66,5 +66,6 @@ credit for getting the data out there.
 
 Všezvěd is a pilgrim’s guide in a book by the well known Czech
 educationalist Comenius called *Labyrinth of the World and Paradise of
-the Heart*. The image in the logo comes from his other book, Orbis
-Pictus, and depicts a school…
+the Heart*. The image in the logo comes from [his other book, Orbis
+Pictus](http://kramerius5.nkp.cz/view/uuid:426f6010-9a3f-11e4-a808-005056827e52?page=uuid:a7c9fad0-a703-11e4-b69d-5ef3fc9ae867)
+(complete online version), and depicts a school…

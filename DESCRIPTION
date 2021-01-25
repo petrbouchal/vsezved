@@ -1,6 +1,6 @@
 Package: vsezved
 Title: Get data on Czech schools from <https://uiv.cz/> and <https://data.msmt.cz/>
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person(given = "Petr",
            family = "Bouchal",
@@ -35,5 +35,5 @@ Suggests:
 Config/testthat/edition: 3
 URL: http://petrbouchal.xyz/vsezved, https://github.com/petrbouchal/vsezved
 BugReports: https://github.com/petrbouchal/vsezved/issues
-Remotes:  
+Remotes: 
     tidyverse/rvest
