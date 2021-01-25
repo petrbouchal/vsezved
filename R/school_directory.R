@@ -178,7 +178,8 @@ response_to_quasixls <- function(response, tempfile = TRUE) {
 #' @param return_tibbles Whether to return the data (if TRUE) or only download the files (if FALSE).
 #' @param write_files Whether to write the XLS files locally.
 #'
-#' @return A list of tibbles if return_tibbles = T, otherwise a character vector of paths
+#' @return A list of a [tibbles][tibble::tibble-package] if return_tibbles = TRUE, a single tibble if only
+#'   one table name is passed `tables`, otherwise a character vector of paths
 #'   to the downloaded *.xls files.
 #' @details
 #'## Available tables

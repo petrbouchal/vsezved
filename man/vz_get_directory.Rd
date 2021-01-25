@@ -22,7 +22,8 @@ to see a list of fields and their potential values.}
 \item{write_files}{Whether to write the XLS files locally.}
 }
 \value{
-A list of tibbles if return_tibbles = T, otherwise a character vector of paths
+A list of a \link[tibble:tibble-package]{tibbles} if return_tibbles = TRUE, a single tibble if only
+one table name is passed \code{tables}, otherwise a character vector of paths
 to the downloaded *.xls files.
 
 if return_tibbles is TRUE, a named list of
