@@ -1,4 +1,4 @@
 library(testthat)
-library(skolnik)
+library(vsezved)
 
 test_check("vsezved")
