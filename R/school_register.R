@@ -118,7 +118,7 @@ vz_load_register <- function(dl_path, tables = "organisations") {
 #'
 #' FUNCTION_DESCRIPTION
 #'
-#' @param which DESCRIPTION.
+#' @param dataset_id DESCRIPTION.
 #' @param tables DESCRIPTION.
 #' @param keep_file DESCRIPTION.
 #'

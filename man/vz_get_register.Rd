@@ -11,11 +11,11 @@ vz_get_register(
 )
 }
 \arguments{
+\item{dataset_id}{DESCRIPTION.}
+
 \item{tables}{DESCRIPTION.}
 
 \item{keep_file}{DESCRIPTION.}
-
-\item{which}{DESCRIPTION.}
 }
 \value{
 RETURN_DESCRIPTION

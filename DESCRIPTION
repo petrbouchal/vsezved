@@ -24,7 +24,9 @@ Imports:
     tidyr (>= 1.1.2),
     janitor (>= 2.0.1),
     lifecycle (>= 0.2.0),
-    ckanr (>= 0.5.0)
+    ckanr (>= 0.5.0),
+    httr (>= 1.4.2),
+    curl (>= 4.3)
 RdMacros:
     lifecycle
 Suggests: 

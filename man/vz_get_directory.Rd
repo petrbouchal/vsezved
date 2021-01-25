@@ -8,7 +8,7 @@ vz_get_directory(
   tables = c("addresses", "schools", "locations", "specialisations"),
   ...,
   return_tibbles = FALSE,
-  keep_files = TRUE
+  write_files = TRUE
 )
 }
 \arguments{
@@ -19,7 +19,7 @@ to see a list of fields and their potential values.}
 
 \item{return_tibbles}{Whether to return the data (if TRUE) or only download the files (if FALSE).}
 
-\item{keep_files}{Whether to write the XLS files locally.}
+\item{write_files}{Whether to write the XLS files locally.}
 }
 \value{
 A list of tibbles if return_tibbles = T, otherwise a character vector of paths
@@ -92,5 +92,5 @@ or use a pipeline management framework such as {targets}.
 }
 }
 \examples{
-vz_get_directory("addresses", uzemi = "CZ010", return_tibbles = T, write_files = T)
+vz_get_directory("addresses", uzemi = "CZ010", return_tibbles = TRUE, write_files = TRUE)
 }

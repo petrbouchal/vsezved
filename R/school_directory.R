@@ -176,7 +176,7 @@ response_to_quasixls <- function(response, tempfile = TRUE) {
 #' @param ... key-value paries of search fields. Use `vz_get_search_fields()`
 #' to see a list of fields and their potential values.
 #' @param return_tibbles Whether to return the data (if TRUE) or only download the files (if FALSE).
-#' @param keep_files Whether to write the XLS files locally.
+#' @param write_files Whether to write the XLS files locally.
 #'
 #' @return A list of tibbles if return_tibbles = T, otherwise a character vector of paths
 #'   to the downloaded *.xls files.
@@ -233,13 +233,13 @@ response_to_quasixls <- function(response, tempfile = TRUE) {
 #'   `vz_process_directory`, though they can be opened in Excel too.
 #'
 #' @examples
-#' vz_get_directory("addresses", uzemi = "CZ010", return_tibbles = T, write_files = T)
+#' vz_get_directory("addresses", uzemi = "CZ010", return_tibbles = TRUE, write_files = TRUE)
 #' @export
 vz_get_directory <- function(tables = c("addresses", "schools",
                                         "locations", "specialisations"),
                              ...,
                              return_tibbles = FALSE,
-                             keep_files = TRUE) {
+                             write_files = TRUE) {
 
   if(missing(tables)) {
     tables <- "addresses"
@@ -257,7 +257,7 @@ vz_get_directory <- function(tables = c("addresses", "schools",
 
   responses <- vz_get_directory_responses(tables = tabs, ...)
 
-  paths <- purrr::map_chr(responses, response_to_quasixls, !keep_files)
+  paths <- purrr::map_chr(responses, response_to_quasixls, !write_files)
   names(paths) <- names(responses)
 
   if(return_tibbles) {
