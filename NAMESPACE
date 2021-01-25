@@ -2,10 +2,13 @@
 
 export("%>%")
 export(vz_get_directory)
+importFrom(dplyr,ends_with)
 importFrom(dplyr,filter)
+importFrom(dplyr,matches)
 importFrom(dplyr,mutate)
 importFrom(dplyr,rename)
 importFrom(dplyr,select)
+importFrom(dplyr,starts_with)
 importFrom(magrittr,"%>%")
 importFrom(tibble,tibble)
 importFrom(tidyr,unnest)

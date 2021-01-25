@@ -6,7 +6,7 @@
 \usage{
 vz_get_register_xml(
   dataset_id = "rejstrik-skol-a-skolskych-zarizeni-cela-cr",
-  keep_file = F
+  write_file = F
 )
 }
 \arguments{

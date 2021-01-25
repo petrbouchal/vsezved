@@ -12,14 +12,14 @@
 #' # ADD_EXAMPLES_HERE
 #' @importFrom tidyr unnest_wider unnest_longer unnest unnest_auto
 vz_get_register_xml <- function(dataset_id = "rejstrik-skol-a-skolskych-zarizeni-cela-cr",
-                                 keep_file = F) {
-  url <- vz_get_url("register")
-  dl_path <- ifelse(keep_file, "registr.xml", tempfile(fileext = ".xml"))
+                                write_file = F) {
+  url <- vz_get_url("register", register_id = dataset_id)
+  dl_path <- ifelse(write_file, "registr.xml", tempfile(fileext = ".xml"))
 
   msg_download_size(url)
 
   curl::curl_download(url, dl_path, handle = curl::new_handle() %>%
-                        curl::handle_setheaders(`User-Agent` = usr))
+                        curl::handle_setheaders(`User-Agent` = ua))
   ui_done("Data downloaded. Reading (this may take a while)")
 
   return(dl_path)

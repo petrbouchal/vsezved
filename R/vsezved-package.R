@@ -8,6 +8,6 @@
 ## usethis namespace: end
 NULL
 
-#' @importFrom dplyr select filter mutate rename
+#' @importFrom dplyr select filter mutate rename starts_with matches ends_with
 #' @importFrom usethis ui_info ui_value ui_field ui_code ui_done ui_code_block ui_line ui_stop ui_path ui_oops ui_todo ui_warn ui_yeah
 NULL

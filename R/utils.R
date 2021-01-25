@@ -34,7 +34,7 @@ check_server <- function(url) {
 get_download_size <- function(x) {
 
   if(is.character(x)) {
-    response = httr::HEAD(x, config = httr::add_headers(`User-Agent` = usr))
+    response = httr::HEAD(x, config = httr::add_headers(`User-Agent` = ua))
     rslt <- httr::headers(response)[["Content-Length"]] %>% as.numeric()
   } else if("response" %in% class(x)) {
     rslt <- httr::headers(x)[["Content-Length"]] %>% as.numeric()

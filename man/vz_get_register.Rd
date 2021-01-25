@@ -2,27 +2,31 @@
 % Please edit documentation in R/school_register.R
 \name{vz_get_register}
 \alias{vz_get_register}
-\title{FUNCTION_TITLE}
+\title{Download and read school register}
 \usage{
 vz_get_register(
   dataset_id = "rejstrik-skol-a-skolskych-zarizeni-cela-cr",
   tables = "organisations",
-  keep_file = T
+  write_file = TRUE
 )
 }
 \arguments{
-\item{dataset_id}{DESCRIPTION.}
+\item{dataset_id}{which dataset to download; used to select data dumps for individual regions or whole country.
+Currently only the default is implemented (whhole country).}
 
-\item{tables}{DESCRIPTION.}
+\item{tables}{Currently ignored, the first three tables are returned. Which tables to return. Can be one or more of "organisations",
+"schools", "locations" or "specialisations".}
 
-\item{keep_file}{DESCRIPTION.}
+\item{keep_file}{Whether to keep the downloaded XML file.
+Currently only writing to the working directory is supported.}
 }
 \value{
-RETURN_DESCRIPTION
+a \link[tibble:tibble-package]{tibble} or list of tibbles if multiple
+table names are passed to \code{tables}.
 }
 \description{
-FUNCTION_DESCRIPTION
-}
-\examples{
-# ADD_EXAMPLES_HERE
+This is the high-level function for getting data from the online XML export
+of the school register. It downloads the file (whole country by default) and
+turns it into a tibble, cleaning up names and dropping some uninteresting
+columns (this may change as the package matures.)
 }
