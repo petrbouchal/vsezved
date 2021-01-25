@@ -38,7 +38,8 @@ vz_get_register_xml <- function(dataset_id = "rejstrik-skol-a-skolskych-zarizeni
 #' # ADD_EXAMPLES_HERE
 vz_load_register <- function(dl_path, tables = "organisations") {
 
-  available_tables <- c("organisations", "schools", "locations", "specialisations")
+  available_tables <- c("organisations", "schools", "locations",
+                        "specialisations")
 
   if(any(!tables %in% available_tables)) {
     wrong_tables <- tables[!tables %in% available_tables]
@@ -50,14 +51,12 @@ vz_load_register <- function(dl_path, tables = "organisations") {
 
   doc_f <- doc[[1]]
 
-  sklf <- tibble(skola = doc_f)
-
-  stop()
+  sklf <- tibble(skola = doc_f) %>%
+    unnest_wider(skola, simplify = T) %>%
+    unnest_longer(RedIzo)
 
   vz_skolskeosoby <- sklf %>%
-    unnest_wider(skola, simplify = T) %>%
-    unnest_auto(RedIzo) %>%
-    unnest_auto(ICO) %>%
+    unnest_longer(ICO) %>%
     unnest_wider(Reditelstvi, simplify = T) %>%
     unnest(c(RedPlnyNazev, RedZkracenyNazev, RedRUAINKod,
              PravniForma, DruhZrizovatele)) %>%
@@ -68,67 +67,74 @@ vz_load_register <- function(dl_path, tables = "organisations") {
     select(-matches("Adresa|^Okres$|^ORP$"),
            -ReditelJeStatutar,
            -SkolyZarizeni, -StatutarniOrgany, -DobaZrizeniSubjektu) %>%
-    mutate(zriz_ICO = map(Zrizovatele, `[[`, "Zrizovatel") %>%
-             map(`[[`, "ZrizICO") %>% map(`[[`, 1),
-           zriz_ICO = ifelse(is.null(zriz_ICO), NA, zriz_ICO) %>%
-             map_chr(`[[`, 1)) %>%
+    mutate(zriz_ICO = purrr::map(Zrizovatele, `[[`, "Zrizovatel") %>%
+             purrr::map(`[[`, "ZrizICO") %>% purrr::map(`[[`, 1),
+           zriz_ICO = ifelse(is.null(zriz_ICO[[1]]), NA, zriz_ICO) %>%
+             purrr::map_chr(`[[`, 1)) %>%
     select(-Zrizovatele) %>%
     rename(redizo = RedIzo)
 
   # write_parquet(vz_skolskeosoby, "stistko/od_skolskeosoby.parquet")
 
   vz_zarizeni <- sklf %>%
-    unnest_wider(skola, simplify = T) %>%
-    unnest_auto(RedIzo) %>%
     select(redizo = RedIzo, SkolyZarizeni) %>%
-    filter(redizo != "691014086") %>%
     unnest_longer(SkolyZarizeni) %>%
     unnest_wider(SkolyZarizeni) %>%
-    unnest_auto(SkolaPlnyNazev) %>%
-    unnest_auto(SkolaDruhTyp) %>%
-    unnest_auto(SkolaKapacita) %>%
-    unnest_auto(SkolaKapacitaJednotka) %>%
-    unnest_auto(SkolaJazyk) %>%
-    unnest_auto(IZO) %>%
-    mutate(SkolaKapacita = as.numeric(SkolaKapacita)) %>%
+    unnest_longer(SkolaPlnyNazev) %>%
+    unnest_longer(SkolaDruhTyp) %>%
+    unnest_longer(SkolaKapacita) %>%
+    unnest_longer(SkolaKapacitaJednotka) %>%
+    unnest_longer(SkolaJazyk) %>%
+    unnest_longer(IZO) %>%
+    mutate(SkolaKapacita = dplyr::na_if(SkolaKapacita, "neuvádí se")) %>%
+    mutate(SkolaKapacita = dplyr::if_else(!is.na(SkolaKapacita),
+                                           as.integer(SkolaKapacita),
+                                           NA_integer_)) %>%
     rename(izo = IZO) %>%
-    select(-starts_with("SkolaDatum"), -matches("Mista|Obor"))
+    select(-dplyr::starts_with("SkolaDatum"),
+           -dplyr::matches("Mista|Obor"))
 
   # write_parquet(vz_zarizeni, "stistko/od_zarizeni.parquet")
 
   vz_mista <- sklf %>%
-    unnest_wider(skola, simplify = T) %>%
-    unnest_auto(RedIzo) %>%
     select(redizo = RedIzo, SkolyZarizeni) %>%
     filter(redizo != "691014086") %>%
     unnest_longer(SkolyZarizeni) %>%
     unnest_wider(SkolyZarizeni) %>%
-    unnest_auto(IZO) %>%
+    unnest_longer(IZO) %>%
     select(redizo, IZO, SkolaMistaVykonuCinnosti) %>%
     unnest_longer(SkolaMistaVykonuCinnosti) %>%
     unnest_wider(SkolaMistaVykonuCinnosti) %>%
-    unnest_auto(IDMista) %>%
-    unnest_auto(MistoDruhTyp) %>%
-    unnest_auto(MistoRUAINKod) %>%
+    unnest_longer(IDMista) %>%
+    unnest_longer(MistoDruhTyp) %>%
+    unnest_longer(MistoRUAINKod) %>%
     select(redizo, izo = IZO, IDMista, MistoDruhTyp, ADM_KOD = MistoRUAINKod)
+
+  return(list(vz_skolskeosoby, vz_zarizeni, vz_mista))
+
 }
 
 
-#' FUNCTION_TITLE
+#' Download and read school register
 #'
-#' FUNCTION_DESCRIPTION
+#' This is the high-level function for getting data from the online XML export
+#' of the school register. It downloads the file (whole country by default) and
+#' turns it into a tibble, cleaning up names and dropping some uninteresting
+#' columns (this may change as the package matures.)
 #'
-#' @param dataset_id DESCRIPTION.
-#' @param tables DESCRIPTION.
-#' @param keep_file DESCRIPTION.
+#' @param dataset_id which dataset to download; used to select data dumps for individual regions or whole country.
+#'  Currently only the default is implemented (whhole country).
+#' @param tables Currently ignored, the first three tables are returned. Which tables to return. Can be one or more of "organisations",
+#'   "schools", "locations" or "specialisations".
+#' @param keep_file Whether to keep the downloaded XML file.
+#'   Currently only writing to the working directory is supported.
 #'
-#' @return RETURN_DESCRIPTION
-#' @examples
-#' # ADD_EXAMPLES_HERE
+#' @return a [tibble][tibble::tibble-package] or list of tibbles if multiple
+#'   table names are passed to `tables`.
 vz_get_register <- function(dataset_id = "rejstrik-skol-a-skolskych-zarizeni-cela-cr",
-                            tables = "organisations", keep_file = T) {
+                            tables = "organisations", write_file = TRUE) {
 
-  dl_path <- vz_get_register_xml(dataset_id = dataset_id, keep_file = keep_file)
+  dl_path <- vz_get_register_xml(dataset_id = dataset_id, write_file = write_file)
   return(vz_load_register(dl_path, tables = tables))
   # write_parquet(vz_mista, "stistko/od_mista.parquet")
 }
