@@ -4,3 +4,5 @@
 ^\.Rproj\.user$
 ^skolnik\.Rproj$
 ^LICENSE\.md$
+^README\.Rmd$
+^\.github$
