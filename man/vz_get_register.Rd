@@ -17,7 +17,7 @@ Currently only the default is implemented (whhole country).}
 \item{tables}{Currently ignored, the first three tables are returned. Which tables to return. Can be one or more of "organisations",
 "schools", "locations" or "specialisations".}
 
-\item{keep_file}{Whether to keep the downloaded XML file.
+\item{write_file}{Whether to keep the downloaded XML file.
 Currently only writing to the working directory is supported.}
 }
 \value{

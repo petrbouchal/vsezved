@@ -126,7 +126,7 @@ vz_load_register <- function(dl_path, tables = "organisations") {
 #'  Currently only the default is implemented (whhole country).
 #' @param tables Currently ignored, the first three tables are returned. Which tables to return. Can be one or more of "organisations",
 #'   "schools", "locations" or "specialisations".
-#' @param keep_file Whether to keep the downloaded XML file.
+#' @param write_file Whether to keep the downloaded XML file.
 #'   Currently only writing to the working directory is supported.
 #'
 #' @return a [tibble][tibble::tibble-package] or list of tibbles if multiple
