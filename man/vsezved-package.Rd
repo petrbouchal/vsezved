@@ -8,6 +8,15 @@
 \description{
 What the package does (one paragraph).
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{http://petrbouchal.xyz/vsezved}
+  \item \url{https://github.com/petrbouchal/vsezved}
+  \item Report bugs at \url{https://github.com/petrbouchal/vsezved/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Petr Bouchal \email{pbouchal@gmail.com} (\href{https://orcid.org/0000-0002-0471-716X}{ORCID})
 
