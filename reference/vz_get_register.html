@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FUNCTION_TITLE — vz_get_register • vsezved</title>
+<title>Download and read school register — vz_get_register • vsezved</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,11 @@
 
 
 
-<meta property="og:title" content="FUNCTION_TITLE — vz_get_register" />
-<meta property="og:description" content="FUNCTION_DESCRIPTION" />
+<meta property="og:title" content="Download and read school register — vz_get_register" />
+<meta property="og:description" content="This is the high-level function for getting data from the online XML export
+of the school register. It downloads the file (whole country by default) and
+turns it into a tibble, cleaning up names and dropping some uninteresting
+columns (this may change as the package matures.)" />
 
 
 
@@ -108,19 +111,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>FUNCTION_TITLE</h1>
+    <h1>Download and read school register</h1>
     <small class="dont-index">Source: <a href='https://github.com/petrbouchal/vsezved/blob/master/R/school_register.R'><code>R/school_register.R</code></a></small>
     <div class="hidden name"><code>vz_get_register.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>FUNCTION_DESCRIPTION</p>
+    <p>This is the high-level function for getting data from the online XML export
+of the school register. It downloads the file (whole country by default) and
+turns it into a tibble, cleaning up names and dropping some uninteresting
+columns (this may change as the package matures.)</p>
     </div>
 
     <pre class="usage"><span class='fu'>vz_get_register</span><span class='op'>(</span>
   dataset_id <span class='op'>=</span> <span class='st'>"rejstrik-skol-a-skolskych-zarizeni-cela-cr"</span>,
   tables <span class='op'>=</span> <span class='st'>"organisations"</span>,
-  keep_file <span class='op'>=</span> <span class='cn'>T</span>
+  write_file <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -128,25 +134,26 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dataset_id</th>
-      <td><p>DESCRIPTION.</p></td>
+      <td><p>which dataset to download; used to select data dumps for individual regions or whole country.
+Currently only the default is implemented (whhole country).</p></td>
     </tr>
     <tr>
       <th>tables</th>
-      <td><p>DESCRIPTION.</p></td>
+      <td><p>Currently ignored, the first three tables are returned. Which tables to return. Can be one or more of "organisations",
+"schools", "locations" or "specialisations".</p></td>
     </tr>
     <tr>
-      <th>keep_file</th>
-      <td><p>DESCRIPTION.</p></td>
+      <th>write_file</th>
+      <td><p>Whether to keep the downloaded XML file.
+Currently only writing to the working directory is supported.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>RETURN_DESCRIPTION</p>
+    <p>a <a href='https://tibble.tidyverse.org/reference/tibble-package.html'>tibble</a> or list of tibbles if multiple
+table names are passed to <code>tables</code>.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># ADD_EXAMPLES_HERE</span>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
