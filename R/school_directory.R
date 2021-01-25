@@ -1,48 +1,88 @@
-sk_get_search_page <- function() {
-  rvest::html_session("http://stistko.uiv.cz/registr/vybskolrn.asp")
+
+vz_get_url <- function(type = c("directory", "register")) {
+  type = match.arg(type)
+  url = switch (type,
+    directory = paste0(stistko_base_url, "vybskolrn.asp"),
+    register = paste0()
+  )
 }
 
-sk_get_search_form <- function(search_page = NULL) {
+#' Get search page for directory search
+#'
+#' FUNCTION_DESCRIPTION
+#'
+#' @return an rvest_session object containing the session for the search page.
+#'   Can be passed on to `vz_get_search_form()`.
+#' @examples
+#' # ADD_EXAMPLES_HERE
+vz_get_search_page <- function() {
+  url <- vz_get_url("directory")
+  return(rvest::session(url, httr::user_agent(ua)))
+}
+
+
+#' Get search page for school directory
+#'
+#' @param search_page search page session as returned by `vz_get_search_page()`
+#'
+#' @return An rvest_form object to be passed on to `vz_get_directory_responses()`.
+#' @examples
+#' # ADD_EXAMPLES_HERE
+vz_get_search_form <- function(search_page = NULL) {
   if(is.null(search_page)) {
-    search_page <- sk_get_search_page()
+    search_page <- vz_get_search_page()
   }
-
-  rvest::html_form(search_page)[[1]]
+  # the base_url param should become unnecessary once
+  # https://github.com/tidyverse/rvest/issues/302 is resolved
+  # to make this more self-contained
+  return(rvest::html_form(search_page, base_url = stistko_base_url)[[1]])
 }
 
-sk_get_search_fields <- function(search_form = NULL) {
+vz_get_search_fields <- function(search_form = NULL) {
   if(is.null(search_form)) {
-    search_form <- sk_get_search_form()
+    search_form <- vz_get_search_form()
   }
 
-  search_form[['fields']]
-
+  return(search_form[['fields']])
 }
 
-sk_get_directory_responses <- function(tables, ...) {
-  available_tables <- c("addresses", "schools", "locations", "specialisations")
 
-  if(any(!tables %in% available_tables)) {
-    wrong_tables <- tables[!tables %in% available_tables]
-    ui_stop("Table(s) {ui_value(wrong_tables)} not available")
+#' Get school directory responses
+#'
+#' FUNCTION_DESCRIPTION
+#'
+#' @param tables DESCRIPTION.
+#' @param ... DESCRIPTION.
+#'
+#' @return RETURN_DESCRIPTION
+#' @examples
+#' # ADD_EXAMPLES_HERE
+vz_get_directory_responses <- function(tables = c("addresses", "schools",
+                                                  "locations", "specialisations"),
+                                       ...) {
+
+  if(missing(tables)) {
+    tables <- "addresses"
+    ui_info(c("{ui_field('tables')} is not set. Using {ui_value('addresses')}."))
+    }
+
+  tryCatch({tabs <- match.arg(tables, several.ok = T)},
+           error = function(e) {
+             ui_stop("Table(s) {ui_value(tables)} not available")
+           })
+  if(all(!all.equal(tabs, tables) == TRUE)) {
+    diff_tables <- setdiff(tables, tabs)
+    ui_stop("Table(s) {ui_value(diff_tables)} not available")
   }
 
-  if(is.null(tables)) {
-    tabs <- c("addresses")
-    ui_info(c("No {ui_field('tables')} param set.",
-                       "Using {ui_value('addresses')}."))
-  } else {
-    tabs <- tables
-  }
-
-  search_page <- sk_get_search_page()
-  search_form <- sk_get_search_form(search_page)
+  search_page <- vz_get_search_page()
+  search_form <- vz_get_search_form(search_page)
 
   # the form does not indicate defaults (even though it seems like it
   # in the browser), so we have to set them manually - otherwise no
   # results are returned.
 
-  search_form_with_defaults <- rvest::form_set(search_form,
+  search_form_with_defaults <- rvest::html_form_set(search_form,
                                                uzemi = "NIC",
                                                zrizovatel = "NIC",
                                                organ = "NIC",
@@ -56,44 +96,55 @@ sk_get_directory_responses <- function(tables, ...) {
                                                obor = "NIC")
 
   if(!missing(...)) {
-    search_form_with_userinput <- rvest::form_set(search_form_with_defaults,
-                                                  ...)
+    search_form_with_userinput <- rvest::html_form_set(search_form_with_defaults,
+                                                       ...)
     search_form_filled <- search_form_with_userinput
   } else {
     search_form_filled <- search_form_with_defaults
   }
 
-  results_page <- rvest::form_submit(search_form_filled, search_page, "XX")
+  results_page <- rvest::session_submit(search_page, search_form_filled, "XX")
 
   results_forms <- results_page %>% xml2::read_html() %>%
-    rvest::html_nodes("form") %>%
-    rvest::html_form()
+    rvest::html_elements("form") %>%
+    # the base_url param should become unnecessary once
+    # https://github.com/tidyverse/rvest/issues/302 is resolved
+    # to make this more self-contained
+    rvest::html_form(base_url = stistko_base_url)
 
-  export_page <- rvest::form_submit(results_forms[[2]], results_page, "EX")
+  export_page <- rvest::session_submit(results_page, results_forms[[2]], "EX")
 
-  export_forms <- rvest::html_form(export_page)
+  # the base_url param should become unnecessary once
+  # https://github.com/tidyverse/rvest/issues/302 is resolved
+  # to make this more self-contained
+  export_forms <- rvest::html_form(export_page, base_url = stistko_base_url)
 
   responses <- list()
-  if("addresses" %in% tabs) {
-    responses <- append(responses, list(rvest::form_submit(export_forms[[1]], export_page, "EX")))
-    names(responses) <- c(names(responses), "addresses")
+
+  add_dir_table <- function(responses, form, name, submit) {
+    new_names <- c(names(responses), name)
+    new_response <- rvest::session_submit(export_page, form, submit)
+    resp <- append(responses, list(new_response))
+    msg_download_size(new_response$response, T)
+    names(resp) <- new_names
+    return(resp)
   }
-  if("schools" %in% tabs) {
-    responses <- append(responses, list(rvest::form_submit(export_forms[[2]], export_page, "EXX")))
-    names(responses) <- c(names(responses), "schools")
-  }
-  if("locations" %in% tabs) {
-    responses <- append(responses, list(rvest::form_submit(export_forms[[3]], export_page, "EXM")))
-    names(responses) <- c(names(responses), "locations")
-  }
-  if("specialisations" %in% tabs) {
-    responses <- append(responses, list(rvest::form_submit(export_forms[[4]], export_page, "EXO")))
-    names(responses) <- c(names(responses), "specialisations")
-  }
+
+  if("addresses" %in% tabs) responses <- add_dir_table(responses, export_forms[[1]], "addresses", "EX")
+  if("schools" %in% tabs) responses <- add_dir_table(responses, export_forms[[2]], "schools", "EXX")
+  if("locations" %in% tabs) responses <- add_dir_table(responses, export_forms[[3]], "locations", "EXM")
+  if("specialisations" %in% tabs) responses <- add_dir_table(responses, export_forms[[4]], "specialisations", "EXO")
 
   return(responses)
 }
 
+
+#' Turn a httr response created by `vz_get_directory_responses()` into and XLS file
+#'
+#' @param response a httr respons returned by `vz_get_directory_responses()`
+#' @param tempfile whether to write into a tempfile (TRUE, the default), or locally
+#'
+#' @return character of length 1: path to XLS file
 response_to_quasixls <- function(response, tempfile = TRUE) {
 
   if(tempfile) {
@@ -118,22 +169,24 @@ response_to_quasixls <- function(response, tempfile = TRUE) {
 #' the resulting export -  either the XLS file or the data, or both.
 #' The school directory is a version of the school register: unlike the core
 #' register, it contains contact information but lacks some other information
-#' (such as unique address identification.) Use `sk_get_register()` for the core
+#' (such as unique address identification.) Use `vz_get_register()` for the core
 #' register.
 #'
 #' @param tables a character vector of tables to retrieve. See Details.
-#' @param ... key-value paries of search fields. Use `sk_get_search_fields()`
+#' @param ... key-value paries of search fields. Use `vz_get_search_fields()`
 #' to see a list of fields and their potential values.
 #' @param return_tibbles Whether to return the data (if TRUE) or only download the files (if FALSE).
 #' @param keep_files Whether to write the XLS files locally.
 #'
+#' @return A list of tibbles if return_tibbles = T, otherwise a character vector of paths
+#'   to the downloaded *.xls files.
 #' @details
 #'## Available tables
 #'
 #' Tables can include "addresses", "schools", "locations", "specialisations".
 #' If you need more tables based on the same query (fields), pass them into
 #' a single function call in order to avoid burdening the data provider's
-#' server (the server needs to perform a search for each call; there is no caching
+#' server (the server needs to perform a search for each function call; there is no caching
 #' and no data dumps are made available).
 #'
 #' ## What this does
@@ -141,6 +194,8 @@ response_to_quasixls <- function(response, tempfile = TRUE) {
 #' The function
 #'
 #'- performs a search on the school directory at uiv.cz
+#'- by default the search is for all schools,
+#'  unless ... params are set to narrow down the search
 #'- traverses the results to the export links
 #'- downloads the XLS files
 #'- loads them into tibbles if return_tibbles is TRUE
@@ -158,38 +213,56 @@ response_to_quasixls <- function(response, tempfile = TRUE) {
 #' using the `tables` argument. This means that only one initial search is
 #' peformed.
 #' 1. Only ask for the tables you need.
-#' 1. If you need a subset of the
-#' data, use the `fields` argument
+#' 1. If you need a subset of the data, use the `fields` argument
 #' 1. If you need multiple subsets of the data,
 #' try to do that via the `fields` argument too, though that may not always be
 #' possible.
 #' 1. If you are downloading a large dump and reusing it in a
 #' pipeline, keep the downloaded XLS files (or your own export) locally (setting
 #' `keep_files` to TRUE), use caching and avoid calling this function repeatedly
-#' (ideally make any reruns conditional on the age of the stored export).
+#' (ideally make any reruns conditional on the age of the stored export
+#' or use a pipeline management framework such as {targets}.
 #'
 #' @return if return_tibbles is TRUE, a named list of
 #'   [tibbles][tibble::tibble-package], with a tibble for each table in `tables`
-#'   with the corresponding name; otherwise a character vector of file paths.
-#'   Note that the resulting XLS files are in fact HTML files and you are best
-#'   off loading them using `sk_load_directory()` and tidying with
-#'   `sk_process_directory`, though they can be opened in Excel too.
+#'   with the corresponding name, unless the function was called with a `tables`
+#'   parameter of length one, in which case the result is a tibble;
+#'   if return_tibbles is FALSE, the result is a character vector of file paths.
+#'   Note that the downloaded XLS files are in fact HTML files and you are best
+#'   off loading them using `vz_load_directory()` and tidying with
+#'   `vz_process_directory`, though they can be opened in Excel too.
 #'
 #' @examples
-#' sk_get_directory("addresses", uzemi = "CZ010", return_tibbles = T, write_files = T)
+#' vz_get_directory("addresses", uzemi = "CZ010", return_tibbles = T, write_files = T)
 #' @export
-sk_get_directory <- function(tables = NULL,
+vz_get_directory <- function(tables = c("addresses", "schools",
+                                        "locations", "specialisations"),
                              ...,
                              return_tibbles = FALSE,
                              keep_files = TRUE) {
 
-  responses <- sk_get_directory_responses(tables = tables, ...)
+  if(missing(tables)) {
+    tables <- "addresses"
+    ui_info(c("{ui_field('tables')} is not set. Using {ui_value('addresses')}."))
+  }
+
+  tryCatch({tabs <- match.arg(tables, several.ok = T)},
+           error = function(e) {
+             ui_stop("Table(s) {ui_value(tables)} not available")
+           })
+  if(all(!all.equal(tabs, tables) == TRUE)) {
+    diff_tables <- setdiff(tables, tabs)
+    ui_stop("Table(s) {ui_value(diff_tables)} not available")
+  }
+
+  responses <- vz_get_directory_responses(tables = tabs, ...)
 
   paths <- purrr::map_chr(responses, response_to_quasixls, !keep_files)
   names(paths) <- names(responses)
 
   if(return_tibbles) {
-    rslt <- purrr::map(paths, sk_load_stistko)
+    rslt <- purrr::map(paths, vz_load_stistko)
+    if(length(rslt) == 1) rslt <- rslt[[1]]
   } else {
     rslt <- paths
   }
@@ -197,8 +270,10 @@ sk_get_directory <- function(tables = NULL,
   return(rslt)
 }
 
-sk_load_stistko <- function(path) {
-  df <- (xml2::read_html(path) %>% rvest::html_table(header = TRUE))[[1]]
-  return(tibble::as_tibble(df))
+vz_load_stistko <- function(path) {
+  tbl_html <- xml2::read_html(path)
+  df <- rvest::html_table(tbl_html, header = TRUE)[[1]]
+  df_tbl <- suppressMessages(tibble::as_tibble(df, .name_repair = janitor::make_clean_names))
+  return(df_tbl)
 }
 
