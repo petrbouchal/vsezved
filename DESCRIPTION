@@ -1,5 +1,5 @@
-Package: skolnik
-Title: What the Package Does (One Line, Title Case)
+Package: vsezved
+Title: Get data on Czech schools from <https://uiv.cz/> and <https://data.msmt.cz/>
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Petr",
@@ -21,7 +21,9 @@ Imports:
     purrr (>= 0.3.4),
     usethis (>= 2.0.0),
     dplyr (>= 1.0.2),
-    tidyr (>= 1.1.2)
+    tidyr (>= 1.1.2),
+    janitor (>= 2.0.1),
+    lifecycle (>= 0.2.0)
 RdMacros:
     lifecycle
 Suggests: 
