@@ -5,7 +5,7 @@
 #' FUNCTION_DESCRIPTION
 #'
 #' @param dataset_id DESCRIPTION.
-#' @param keep_file DESCRIPTION.
+#' @param write_file DESCRIPTION.
 #'
 #' @return RETURN_DESCRIPTION
 #' @examples

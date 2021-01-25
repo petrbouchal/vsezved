@@ -12,7 +12,7 @@ vz_get_register_xml(
 \arguments{
 \item{dataset_id}{DESCRIPTION.}
 
-\item{keep_file}{DESCRIPTION.}
+\item{write_file}{DESCRIPTION.}
 }
 \value{
 RETURN_DESCRIPTION
