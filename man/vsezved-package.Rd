@@ -4,9 +4,11 @@
 \name{vsezved-package}
 \alias{vsezved}
 \alias{vsezved-package}
-\title{vsezved: Get data on Czech schools from <https://uiv.cz/> and <https://data.msmt.cz/>}
+\title{vsezved: Get data on Czech schools from <https://stistko.uiv.cz/registr/> and <https://data.msmt.cz/>}
 \description{
-What the package does (one paragraph).
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
+Get access to data on Czech schools: the register open data provided by the Ministry of Education at <https://data.msmt.cz/> and non-open web database at <http://stistko.uiv.cz/registr/> This is mostly organisatoinal data on primary and secondary schools.
 }
 \seealso{
 Useful links:

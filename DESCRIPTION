@@ -1,5 +1,5 @@
 Package: vsezved
-Title: Get data on Czech schools from <https://uiv.cz/> and <https://data.msmt.cz/>
+Title: Get data on Czech schools from <https://stistko.uiv.cz/registr/> and <https://data.msmt.cz/>
 Version: 0.1.0
 Authors@R: 
     person(given = "Petr",
@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "pbouchal@gmail.com",
            comment = c(ORCID = "0000-0002-0471-716X"))
-Description: What the package does (one paragraph).
+Description: Get access to data on Czech schools: the register open data provided by the Ministry of Education at <https://data.msmt.cz/> and non-open web database at <http://stistko.uiv.cz/registr/> This is mostly organisatoinal data on primary and secondary schools.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
