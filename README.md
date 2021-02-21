@@ -22,7 +22,7 @@ Full documentation is at
 [petrbouchal.xyz/vsezved](https://petrbouchal.xyz/vsezved).
 
 Intro blogpost in Czech is at
-[petrbouchal.xyz/cz/post/vsezved](https://petrbouchal.xyz/post/vsezved)
+[petrbouchal.xyz/cz/post/vsezved](https://petrbouchal.xyz/cz/post/vsezved)
 
 ## Installation
 
