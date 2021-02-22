@@ -14,7 +14,7 @@ vz_get_register(
 \item{dataset_id}{which dataset to download; used to select data dumps for individual regions or whole country.
 Currently only the default is implemented (whhole country).}
 
-\item{tables}{Currently ignored, the first three tables are returned. Which tables to return. Can be one or more of "organisations",
+\item{tables}{CURRENTLY IGNORED; the first three tables are returned. Which tables to return. Can be one or more of "organisations",
 "schools", "locations" or "specialisations".}
 
 \item{write_file}{Whether to keep the downloaded XML file.

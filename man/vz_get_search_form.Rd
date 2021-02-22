@@ -2,7 +2,7 @@
 % Please edit documentation in R/school_directory.R
 \name{vz_get_search_form}
 \alias{vz_get_search_form}
-\title{Get search page for school directory}
+\title{Get search form for school directory}
 \usage{
 vz_get_search_form(search_page = NULL)
 }
@@ -13,8 +13,5 @@ vz_get_search_form(search_page = NULL)
 An rvest_form object to be passed on to \code{vz_get_directory_responses()}.
 }
 \description{
-Get search page for school directory
-}
-\examples{
-# ADD_EXAMPLES_HERE
+Get search form for school directory
 }

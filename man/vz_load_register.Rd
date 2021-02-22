@@ -2,18 +2,20 @@
 % Please edit documentation in R/school_register.R
 \name{vz_load_register}
 \alias{vz_load_register}
-\title{FUNCTION_TITLE}
+\title{Load register}
 \usage{
 vz_load_register(dl_path, tables = "organisations")
 }
 \arguments{
-\item{dl_path}{DESCRIPTION.}
+\item{dl_path}{Path to XML file output by \code{vz_get_register_xml()}.}
 
-\item{tables}{DESCRIPTION.}
+\item{tables}{CURRENTLY IGNORED; the first three tables are returned. Which tables to return. Can be one or more of "organisations",
+"schools", "locations" or "specialisations".}
 }
 \value{
-RETURN_DESCRIPTION
+a \link[tibble:tibble-package]{tibble} or list of tibbles if multiple
+table names are passed to \code{tables}.
 }
 \description{
-FUNCTION_DESCRIPTION
+Read XML register and return tibble(s) with the register tables.
 }

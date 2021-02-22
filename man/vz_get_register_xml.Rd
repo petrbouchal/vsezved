@@ -2,7 +2,7 @@
 % Please edit documentation in R/school_register.R
 \name{vz_get_register_xml}
 \alias{vz_get_register_xml}
-\title{FUNCTION_TITLE}
+\title{Download (XML) file of register}
 \usage{
 vz_get_register_xml(
   dataset_id = "rejstrik-skol-a-skolskych-zarizeni-cela-cr",
@@ -10,16 +10,15 @@ vz_get_register_xml(
 )
 }
 \arguments{
-\item{dataset_id}{DESCRIPTION.}
+\item{dataset_id}{which dataset to download; used to select data dumps for individual regions or whole country.
+Currently only the default is implemented (whhole country).}
 
-\item{write_file}{DESCRIPTION.}
+\item{write_file}{Whether to keep the downloaded XML file.
+Currently only writing to the working directory is supported.}
 }
 \value{
-RETURN_DESCRIPTION
+Path to downloaded (XML) file.
 }
 \description{
-FUNCTION_DESCRIPTION
-}
-\examples{
-# ADD_EXAMPLES_HERE
+Uses CKAN to find the correct URL in the education ministry's \href{https://data.msmt.cz/}{open data catalogue} and retrieve the file.
 }

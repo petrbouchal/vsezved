@@ -12,9 +12,9 @@ vz_get_directory(
 )
 }
 \arguments{
-\item{tables}{a character vector of tables to retrieve. See Details.}
+\item{tables}{a character vector of tables to retrieve. See ** Tables** below.}
 
-\item{...}{key-value paries of search fields. Use \code{vz_get_search_fields()}
+\item{...}{key-value pairs of search fields. Use \code{vz_get_search_fields()}
 to see a list of fields and their potential values.}
 
 \item{return_tibbles}{Whether to return the data (if TRUE) or only download the files (if FALSE).}
@@ -44,8 +44,8 @@ register, it contains contact information but lacks some other information
 (such as unique address identification.) Use \code{vz_get_register()} for the core
 register.
 }
-\details{
-\subsection{Available tables}{
+\section{Tables}{
+
 
 Tables can include "addresses", "schools", "locations", "specialisations".
 If you need more tables based on the same query (fields), pass them into
@@ -54,7 +54,8 @@ server (the server needs to perform a search for each function call; there is no
 and no data dumps are made available).
 }
 
-\subsection{What this does}{
+\section{What this does}{
+
 
 The function
 \itemize{
@@ -72,7 +73,8 @@ export files (max 4 per call) are downloaded the same way as
 it would be done manually.
 }
 
-\subsection{Note}{
+\section{Note}{
+
 
 To avoid blitzing the data provider's server with many heavy requests:
 \enumerate{
@@ -91,7 +93,7 @@ pipeline, keep the downloaded XLS files (or your own export) locally (setting
 or use a pipeline management framework such as {targets}.
 }
 }
-}
+
 \examples{
 vz_get_directory("addresses", uzemi = "CZ010", return_tibbles = TRUE, write_files = TRUE)
 }

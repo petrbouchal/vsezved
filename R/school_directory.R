@@ -9,25 +9,19 @@ vz_get_url <- function(type = c("directory", "register")) {
 
 #' Get search page for directory search
 #'
-#' FUNCTION_DESCRIPTION
-#'
 #' @return an rvest_session object containing the session for the search page.
 #'   Can be passed on to `vz_get_search_form()`.
-#' @examples
-#' # ADD_EXAMPLES_HERE
 vz_get_search_page <- function() {
   url <- vz_get_url("directory")
   return(rvest::session(url, httr::user_agent(ua)))
 }
 
 
-#' Get search page for school directory
+#' Get search form for school directory
 #'
 #' @param search_page search page session as returned by `vz_get_search_page()`
 #'
 #' @return An rvest_form object to be passed on to `vz_get_directory_responses()`.
-#' @examples
-#' # ADD_EXAMPLES_HERE
 vz_get_search_form <- function(search_page = NULL) {
   if(is.null(search_page)) {
     search_page <- vz_get_search_page()
@@ -49,14 +43,13 @@ vz_get_search_fields <- function(search_form = NULL) {
 
 #' Get school directory responses
 #'
-#' FUNCTION_DESCRIPTION
+#' Key low-level code for getting school directory data: crawl through layers of forms
+#' and return HTTP response containing quasi-XLS attachments with data exports.
 #'
-#' @param tables DESCRIPTION.
-#' @param ... DESCRIPTION.
+#' @inheritParams vz_get_directory
+#' @inheritSection vz_get_directory Tables
 #'
-#' @return RETURN_DESCRIPTION
-#' @examples
-#' # ADD_EXAMPLES_HERE
+#' @return HTTP response parsable with response_to_quasixls or generally with {httr}.
 vz_get_directory_responses <- function(tables = c("addresses", "schools",
                                                   "locations", "specialisations"),
                                        ...) {
@@ -169,8 +162,8 @@ response_to_quasixls <- function(response, tempfile = TRUE) {
 #' (such as unique address identification.) Use `vz_get_register()` for the core
 #' register.
 #'
-#' @param tables a character vector of tables to retrieve. See Details.
-#' @param ... key-value paries of search fields. Use `vz_get_search_fields()`
+#' @param tables a character vector of tables to retrieve. See ** Tables** below.
+#' @param ... key-value pairs of search fields. Use `vz_get_search_fields()`
 #' to see a list of fields and their potential values.
 #' @param return_tibbles Whether to return the data (if TRUE) or only download the files (if FALSE).
 #' @param write_files Whether to write the XLS files locally.
@@ -178,8 +171,8 @@ response_to_quasixls <- function(response, tempfile = TRUE) {
 #' @return A list of a [tibbles][tibble::tibble-package] if return_tibbles = TRUE, a single tibble if only
 #'   one table name is passed `tables`, otherwise a character vector of paths
 #'   to the downloaded *.xls files.
-#' @details
-#'## Available tables
+#'
+#' @section Tables:
 #'
 #' Tables can include "addresses", "schools", "locations", "specialisations".
 #' If you need more tables based on the same query (fields), pass them into
@@ -187,7 +180,7 @@ response_to_quasixls <- function(response, tempfile = TRUE) {
 #' server (the server needs to perform a search for each function call; there is no caching
 #' and no data dumps are made available).
 #'
-#' ## What this does
+#' @section What this does:
 #'
 #' The function
 #'
@@ -203,7 +196,7 @@ response_to_quasixls <- function(response, tempfile = TRUE) {
 #' export files (max 4 per call) are downloaded the same way as
 #' it would be done manually.
 #'
-#' ## Note
+#' @section Note:
 #'
 #' To avoid blitzing the data provider's server with many heavy requests:
 #'

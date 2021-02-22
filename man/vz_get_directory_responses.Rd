@@ -10,16 +10,25 @@ vz_get_directory_responses(
 )
 }
 \arguments{
-\item{tables}{DESCRIPTION.}
+\item{tables}{a character vector of tables to retrieve. See ** Tables** below.}
 
-\item{...}{DESCRIPTION.}
+\item{...}{key-value pairs of search fields. Use \code{vz_get_search_fields()}
+to see a list of fields and their potential values.}
 }
 \value{
-RETURN_DESCRIPTION
+HTTP response parsable with response_to_quasixls or generally with {httr}.
 }
 \description{
-FUNCTION_DESCRIPTION
+Key low-level code for getting school directory data: crawl through layers of forms
+and return HTTP response containing quasi-XLS attachments with data exports.
 }
-\examples{
-# ADD_EXAMPLES_HERE
+\section{Tables}{
+
+
+Tables can include "addresses", "schools", "locations", "specialisations".
+If you need more tables based on the same query (fields), pass them into
+a single function call in order to avoid burdening the data provider's
+server (the server needs to perform a search for each function call; there is no caching
+and no data dumps are made available).
 }
+

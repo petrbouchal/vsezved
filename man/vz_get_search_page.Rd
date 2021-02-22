@@ -11,8 +11,5 @@ an rvest_session object containing the session for the search page.
 Can be passed on to \code{vz_get_search_form()}.
 }
 \description{
-FUNCTION_DESCRIPTION
-}
-\examples{
-# ADD_EXAMPLES_HERE
+Get search page for directory search
 }

@@ -1,15 +1,12 @@
 
 
-#' FUNCTION_TITLE
+#' Download (XML) file of register
 #'
-#' FUNCTION_DESCRIPTION
+#' Uses CKAN to find the correct URL in the education ministry's [open data catalogue](https://data.msmt.cz/) and retrieve the file.
 #'
-#' @param dataset_id DESCRIPTION.
-#' @param write_file DESCRIPTION.
+#' @inheritParams vz_get_register
 #'
-#' @return RETURN_DESCRIPTION
-#' @examples
-#' # ADD_EXAMPLES_HERE
+#' @return Path to downloaded (XML) file.
 #' @importFrom tidyr unnest_wider unnest_longer unnest unnest_auto
 vz_get_register_xml <- function(dataset_id = "rejstrik-skol-a-skolskych-zarizeni-cela-cr",
                                 write_file = F) {
@@ -26,14 +23,14 @@ vz_get_register_xml <- function(dataset_id = "rejstrik-skol-a-skolskych-zarizeni
 }
 
 
-#' FUNCTION_TITLE
+#' Load register
 #'
-#' FUNCTION_DESCRIPTION
+#' Read XML register and return tibble(s) with the register tables.
 #'
-#' @param dl_path DESCRIPTION.
-#' @param tables DESCRIPTION.
+#' @param dl_path Path to XML file output by `vz_get_register_xml()`.
+#' @inheritParams vz_get_register
 #'
-#' @return RETURN_DESCRIPTION
+#' @inherit vz_get_register return
 #' @export
 vz_load_register <- function(dl_path, tables = "organisations") {
 
@@ -126,7 +123,7 @@ vz_load_register <- function(dl_path, tables = "organisations") {
 #'
 #' @param dataset_id which dataset to download; used to select data dumps for individual regions or whole country.
 #'  Currently only the default is implemented (whhole country).
-#' @param tables Currently ignored, the first three tables are returned. Which tables to return. Can be one or more of "organisations",
+#' @param tables CURRENTLY IGNORED; the first three tables are returned. Which tables to return. Can be one or more of "organisations",
 #'   "schools", "locations" or "specialisations".
 #' @param write_file Whether to keep the downloaded XML file.
 #'   Currently only writing to the working directory is supported.
