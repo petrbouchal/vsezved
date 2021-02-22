@@ -27,3 +27,8 @@ template:
     twitter:
       creator: "@petrbouchal"
       card: summary_large_image
+
+news:
+ releases:
+ - text: "vsezved 0.0.1"
+   href: https://petrbouchal.xyz/cz/post/vsezved
