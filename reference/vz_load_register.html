@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FUNCTION_TITLE — vz_load_register • vsezved</title>
+<title>Load register — vz_load_register • vsezved</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="FUNCTION_TITLE — vz_load_register" />
-<meta property="og:description" content="FUNCTION_DESCRIPTION" />
+<meta property="og:title" content="Load register — vz_load_register" />
+<meta property="og:description" content="Read XML register and return tibble(s) with the register tables." />
 <meta property="og:image" content="http://petrbouchal.xyz/vsezved/reference/figures/card.png" />
 <meta property="og:image:alt" content="vsezved: An R package for using data on Czech schools" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -145,13 +145,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>FUNCTION_TITLE</h1>
+    <h1>Load register</h1>
     <small class="dont-index">Source: <a href='https://github.com/petrbouchal/vsezved/blob/master/R/school_register.R'><code>R/school_register.R</code></a></small>
     <div class="hidden name"><code>vz_load_register.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>FUNCTION_DESCRIPTION</p>
+    <p>Read XML register and return tibble(s) with the register tables.</p>
     </div>
 
     <pre class="usage"><span class='fu'>vz_load_register</span><span class='op'>(</span><span class='va'>dl_path</span>, tables <span class='op'>=</span> <span class='st'>"organisations"</span><span class='op'>)</span></pre>
@@ -161,17 +161,19 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dl_path</th>
-      <td><p>DESCRIPTION.</p></td>
+      <td><p>Path to XML file output by <code><a href='vz_get_register_xml.html'>vz_get_register_xml()</a></code>.</p></td>
     </tr>
     <tr>
       <th>tables</th>
-      <td><p>DESCRIPTION.</p></td>
+      <td><p>CURRENTLY IGNORED; the first three tables are returned. Which tables to return. Can be one or more of "organisations",
+"schools", "locations" or "specialisations".</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>RETURN_DESCRIPTION</p>
+    <p>a <a href='https://tibble.tidyverse.org/reference/tibble-package.html'>tibble</a> or list of tibbles if multiple
+table names are passed to <code>tables</code>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

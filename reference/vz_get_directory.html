@@ -180,11 +180,11 @@ register.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tables</th>
-      <td><p>a character vector of tables to retrieve. See Details.</p></td>
+      <td><p>a character vector of tables to retrieve. See ** Tables** below.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>key-value paries of search fields. Use <code>vz_get_search_fields()</code>
+      <td><p>key-value pairs of search fields. Use <code>vz_get_search_fields()</code>
 to see a list of fields and their potential values.</p></td>
     </tr>
     <tr>
@@ -210,10 +210,9 @@ if return_tibbles is FALSE, the result is a character vector of file paths.
 Note that the downloaded XLS files are in fact HTML files and you are best
 off loading them using <code>vz_load_directory()</code> and tidying with
 <code>vz_process_directory</code>, though they can be opened in Excel too.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="tables"><a class="anchor" href="#tables"></a>Tables</h2>
 
     
-<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Available tables</h3>
 
 
 <p>Tables can include "addresses", "schools", "locations", "specialisations".
@@ -221,8 +220,9 @@ If you need more tables based on the same query (fields), pass them into
 a single function call in order to avoid burdening the data provider's
 server (the server needs to perform a search for each function call; there is no caching
 and no data dumps are made available).</p>
+    <h2 class="hasAnchor" id="what-this-does"><a class="anchor" href="#what-this-does"></a>What this does</h2>
 
-<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>What this does</h3>
+    
 
 
 <p>The function</p><ul>
@@ -238,8 +238,9 @@ unless ... params are set to narrow down the search</p></li>
 At the same time, no intense web scraping takes place - only individual
 export files (max 4 per call) are downloaded the same way as
 it would be done manually.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-<h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Note</h3>
+    
 
 
 <p>To avoid blitzing the data provider's server with many heavy requests:</p><ol>
@@ -257,7 +258,6 @@ pipeline, keep the downloaded XLS files (or your own export) locally (setting
 (ideally make any reruns conditional on the age of the stored export
 or use a pipeline management framework such as targets.</p></li>
 </ol>
-
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

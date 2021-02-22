@@ -49,7 +49,8 @@
   
 
 <meta property="og:title" content="Get school directory responses — vz_get_directory_responses" />
-<meta property="og:description" content="FUNCTION_DESCRIPTION" />
+<meta property="og:description" content="Key low-level code for getting school directory data: crawl through layers of forms
+and return HTTP response containing quasi-XLS attachments with data exports." />
 <meta property="og:image" content="http://petrbouchal.xyz/vsezved/reference/figures/card.png" />
 <meta property="og:image:alt" content="vsezved: An R package for using data on Czech schools" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -151,7 +152,8 @@
     </div>
 
     <div class="ref-description">
-    <p>FUNCTION_DESCRIPTION</p>
+    <p>Key low-level code for getting school directory data: crawl through layers of forms
+and return HTTP response containing quasi-XLS attachments with data exports.</p>
     </div>
 
     <pre class="usage"><span class='fu'>vz_get_directory_responses</span><span class='op'>(</span>
@@ -164,21 +166,29 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tables</th>
-      <td><p>DESCRIPTION.</p></td>
+      <td><p>a character vector of tables to retrieve. See ** Tables** below.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>DESCRIPTION.</p></td>
+      <td><p>key-value pairs of search fields. Use <code>vz_get_search_fields()</code>
+to see a list of fields and their potential values.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>RETURN_DESCRIPTION</p>
+    <p>HTTP response parsable with response_to_quasixls or generally with httr.</p>
+    <h2 class="hasAnchor" id="tables"><a class="anchor" href="#tables"></a>Tables</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># ADD_EXAMPLES_HERE</span>
-</div></pre>
+    
+
+
+<p>Tables can include "addresses", "schools", "locations", "specialisations".
+If you need more tables based on the same query (fields), pass them into
+a single function call in order to avoid burdening the data provider's
+server (the server needs to perform a search for each function call; there is no caching
+and no data dumps are made available).</p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
