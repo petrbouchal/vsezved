@@ -82,18 +82,15 @@ vz_get_directory_responses <- function(tables = c("addresses", "schools",
   # in the browser), so we have to set them manually - otherwise no
   # results are returned.
 
-  search_form_with_defaults <- rvest::html_form_set(search_form,
-                                               uzemi = "NIC",
-                                               zrizovatel = "NIC",
-                                               organ = "NIC",
-                                               typ = "NIC",
-                                               jazs = "NIC",
-                                               delka = "NIC",
-                                               forma = "NIC",
-                                               jazob = "NIC",
-                                               skupobor = "NIC",
-                                               kmobor = "NIC",
-                                               obor = "NIC")
+  # build list with field names and the same default value
+  # passed to html_set_form via "!!!"
+  form_fields <- c("uzemi", "zrizovatel", "organ", "typ", "jazs", "delka",
+                   "forma", "jazob", "skupobor", "kmobor", "obor")
+  form_vals <- rep("NIC", times = length(form_fields)) %>%
+    purrr::set_names(form_fields) %>% as.list()
+
+
+  search_form_with_defaults <- rvest::html_form_set(search_form, !!!form_vals)
 
   if(!missing(...)) {
     search_form_with_userinput <- rvest::html_form_set(search_form_with_defaults,
