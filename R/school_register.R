@@ -8,17 +8,30 @@
 #'
 #' @return Path to downloaded (XML) file.
 #' @importFrom tidyr unnest_wider unnest_longer unnest unnest_auto
-vz_get_register_xml <- function(dataset_id = "rejstrik-skol-a-skolskych-zarizeni-cela-cr",
+vz_get_register_xml <- function(url = NULL,
+                                package_id = NULL,
                                 write_file = F) {
-  url <- vz_get_url("register", register_id = dataset_id)
+
+  if(is.null(url) & is.null(dataset_id)) {
+    urlf <- vz_get_ckan_url()
+    ui_info("Neither {ui_field('dataset_id')} nor {ui_field('url')} set.",
+            "Getting data package {ui_value(register_ckan_id} from {ui_path(msmt_ckan_base_url)}")
+  } else if(is.null(url) & !is.null(package_id)) {
+    urlf <- vz_get_ckan_url(package_id = package_id)
+  } else if(!is.null(url) & !is.null(package_id)) {
+    urlf <- url
+    ui_info("Both {ui_field('dataset_id')} and {ui_field('url')} set.",
+            "Using {ui_field('dataset_id')} ({ui_value(dataset_id)})")
+  } else {
+    urlf <- url
+  }
+
   dl_path <- ifelse(write_file, "registr.xml", tempfile(fileext = ".xml"))
 
-  msg_download_size(url)
+  msg_download_size(urlf)
 
-  curl::curl_download(url, dl_path, handle = curl::new_handle() %>%
+  curl::curl_download(urlf, dl_path, handle = curl::new_handle() %>%
                         curl::handle_setheaders(`User-Agent` = ua))
-  ui_done("Data downloaded. Reading (this may take a while)")
-
   return(dl_path)
 }
 
@@ -32,14 +45,24 @@ vz_get_register_xml <- function(dataset_id = "rejstrik-skol-a-skolskych-zarizeni
 #'
 #' @inherit vz_get_register return
 #' @export
-vz_load_register <- function(dl_path, tables = "organisations") {
+vz_load_register <- function(dl_path, tables = c("organisations", "schools", "locations",
+                                                 "specialisations")) {
 
   available_tables <- c("organisations", "schools", "locations",
                         "specialisations")
 
-  if(any(!tables %in% available_tables)) {
-    wrong_tables <- tables[!tables %in% available_tables]
-    ui_stop("Table(s) {ui_value(wrong_tables)} not available")
+  if(missing(tables)) {
+    tables <- "organisations"
+    ui_info(c("{ui_field('tables')} is not set. Using {ui_value('addresses')}."))
+  }
+
+  tryCatch({tabs <- match.arg(tables, several.ok = T)},
+           error = function(e) {
+             ui_stop("Table(s) {ui_value(tables)} not available")
+           })
+  if(all(!all.equal(tabs, tables) == TRUE)) {
+    diff_tables <- setdiff(tables, tabs)
+    ui_stop("Table(s) {ui_value(diff_tables)} not available")
   }
 
   doc <- xml2::as_list(xml2::read_xml(dl_path))
@@ -134,6 +157,7 @@ vz_get_register <- function(dataset_id = "rejstrik-skol-a-skolskych-zarizeni-cel
                             tables = "organisations", write_file = TRUE) {
 
   dl_path <- vz_get_register_xml(dataset_id = dataset_id, write_file = write_file)
+  ui_done("Data downloaded. Reading (this may take a while)")
   return(vz_load_register(dl_path, tables = tables))
   # write_parquet(vz_mista, "stistko/od_mista.parquet")
 }
