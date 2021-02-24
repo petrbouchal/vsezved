@@ -167,6 +167,7 @@ vz_write_directory_quasixls <- function(response, write_file = FALSE, dest_dir =
 #' to see a list of fields and their potential values.
 #' @param return_tibbles Whether to return the data (if TRUE) or only download the files (if FALSE).
 #' @param write_files Whether to write the XLS files locally.
+#' @param dest_dir Directory in which to write XLS files. Defaults to working directory.
 #'
 #' @return A list of a [tibbles][tibble::tibble-package] if return_tibbles = TRUE, a single tibble if only
 #'   one table name is passed `tables`, otherwise a character vector of paths
@@ -230,7 +231,8 @@ vz_get_directory <- function(tables = c("addresses", "schools",
                                         "locations", "specialisations"),
                              ...,
                              return_tibbles = FALSE,
-                             write_files = TRUE) {
+                             write_files = TRUE,
+                             dest_dir = getwd()) {
 
   if(missing(tables)) {
     tables <- "addresses"
