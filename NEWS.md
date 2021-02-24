@@ -1,3 +1,5 @@
+# vsezved (development version)
+
 # vsezved 0.1.0
 
 * first barely working version. See [blog post](https://petrbouchal.xyz/cz/post/vsezved) announcement (in Czech only)
