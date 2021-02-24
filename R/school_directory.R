@@ -130,6 +130,7 @@ vz_get_directory_responses <- function(tables = c("addresses", "schools",
 #' Turn a httr response created by `vz_get_directory_responses()` into and XLS file
 #'
 #' @param response a httr respons returned by `vz_get_directory_responses()`
+#' @param write_file Whether to write the XLS files locally.
 #' @inheritParams vz_get_directory
 #'
 #' @return character of length 1: path to XLS file
@@ -205,13 +206,13 @@ vz_write_directory_quasixls <- function(response, write_file = FALSE, dest_dir =
 #' using the `tables` argument. This means that only one initial search is
 #' peformed.
 #' 1. Only ask for the tables you need.
-#' 1. If you need a subset of the data, use the `fields` argument
+#' 1. If you need a subset of the data, use the `fields` (...) argument
 #' 1. If you need multiple subsets of the data,
-#' try to do that via the `fields` argument too, though that may not always be
+#' try to do that via the `fields` (...) argument too, though that may not always be
 #' possible.
 #' 1. If you are downloading a large dump and reusing it in a
 #' pipeline, keep the downloaded XLS files (or your own export) locally (setting
-#' `keep_files` to TRUE), use caching and avoid calling this function repeatedly
+#' `write_files` to TRUE), use caching and avoid calling this function repeatedly
 #' (ideally make any reruns conditional on the age of the stored export
 #' or use a pipeline management framework such as {targets}.
 #'
@@ -222,7 +223,7 @@ vz_write_directory_quasixls <- function(response, write_file = FALSE, dest_dir =
 #'   if return_tibbles is FALSE, the result is a character vector of file paths.
 #'   Note that the downloaded XLS files are in fact HTML files and you are best
 #'   off loading them using `vz_load_directory()` and tidying with
-#'   `vz_process_directory`, though they can be opened in Excel too.
+#'   `vz_load_directory`, though they can be opened in Excel too.
 #'
 #' @examples
 #' vz_get_directory("addresses", uzemi = "CZ010", return_tibbles = TRUE, write_files = TRUE)
@@ -271,7 +272,7 @@ vz_get_directory <- function(tables = c("addresses", "schools",
 #'
 #' @param path Path to .xls file retrieved by `vz_write_directory_quasixls`
 #'
-#' @return a tibble
+#' @return a [tibble][tibble::tibble-package]
 #' @export
 vz_load_directory <- function(path) {
   tbl_html <- xml2::read_html(path)

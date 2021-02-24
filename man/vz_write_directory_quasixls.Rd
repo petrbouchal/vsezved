@@ -9,6 +9,8 @@ vz_write_directory_quasixls(response, write_file = FALSE, dest_dir = getwd())
 \arguments{
 \item{response}{a httr respons returned by \code{vz_get_directory_responses()}}
 
+\item{write_file}{Whether to write the XLS files locally.}
+
 \item{dest_dir}{Directory in which to write XLS files. Defaults to working directory.}
 }
 \value{

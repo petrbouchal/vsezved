@@ -10,7 +10,7 @@ vz_load_directory(path)
 \item{path}{Path to .xls file retrieved by \code{vz_write_directory_quasixls}}
 }
 \value{
-a tibble
+a \link[tibble:tibble-package]{tibble}
 }
 \description{
 Read and clean up quasi-XLSX file retrieved by \code{vz_write_directory_quasixls}

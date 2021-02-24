@@ -36,7 +36,7 @@ parameter of length one, in which case the result is a tibble;
 if return_tibbles is FALSE, the result is a character vector of file paths.
 Note that the downloaded XLS files are in fact HTML files and you are best
 off loading them using \code{vz_load_directory()} and tidying with
-\code{vz_process_directory}, though they can be opened in Excel too.
+\code{vz_load_directory}, though they can be opened in Excel too.
 }
 \description{
 \lifecycle{experimental}
@@ -85,13 +85,13 @@ To avoid blitzing the data provider's server with many heavy requests:
 using the \code{tables} argument. This means that only one initial search is
 peformed.
 \item Only ask for the tables you need.
-\item If you need a subset of the data, use the \code{fields} argument
+\item If you need a subset of the data, use the \code{fields} (...) argument
 \item If you need multiple subsets of the data,
-try to do that via the \code{fields} argument too, though that may not always be
+try to do that via the \code{fields} (...) argument too, though that may not always be
 possible.
 \item If you are downloading a large dump and reusing it in a
 pipeline, keep the downloaded XLS files (or your own export) locally (setting
-\code{keep_files} to TRUE), use caching and avoid calling this function repeatedly
+\code{write_files} to TRUE), use caching and avoid calling this function repeatedly
 (ideally make any reruns conditional on the age of the stored export
 or use a pipeline management framework such as {targets}.
 }
