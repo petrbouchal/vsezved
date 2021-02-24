@@ -4,15 +4,9 @@
 \alias{vz_get_register_xml}
 \title{Download (XML) file of register}
 \usage{
-vz_get_register_xml(
-  dataset_id = "rejstrik-skol-a-skolskych-zarizeni-cela-cr",
-  write_file = F
-)
+vz_get_register_xml(url = NULL, package_id = NULL, write_file = F)
 }
 \arguments{
-\item{dataset_id}{which dataset to download; used to select data dumps for individual regions or whole country.
-Currently only the default is implemented (whhole country).}
-
 \item{write_file}{Whether to keep the downloaded XML file.
 Currently only writing to the working directory is supported.}
 }

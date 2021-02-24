@@ -4,7 +4,10 @@
 \alias{vz_load_register}
 \title{Load register}
 \usage{
-vz_load_register(dl_path, tables = "organisations")
+vz_load_register(
+  dl_path,
+  tables = c("organisations", "schools", "locations", "specialisations")
+)
 }
 \arguments{
 \item{dl_path}{Path to XML file output by \code{vz_get_register_xml()}.}
