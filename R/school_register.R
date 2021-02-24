@@ -106,7 +106,7 @@ vz_load_register <- function(dl_path, tables = c("organisations", "schools", "lo
     unnest_longer(SkolaJazyk) %>%
     unnest_longer(IZO) %>%
     mutate(SkolaKapacita = dplyr::if_else(grepl("[a-zA-Z]",
-                                                         SkolaKapacita),
+                                                SkolaKapacita),
                                           NA_character_,
                                           SkolaKapacita)) %>%
     mutate(SkolaKapacita = dplyr::if_else(!is.na(SkolaKapacita),
