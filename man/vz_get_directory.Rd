@@ -8,7 +8,8 @@ vz_get_directory(
   tables = c("addresses", "schools", "locations", "specialisations"),
   ...,
   return_tibbles = FALSE,
-  write_files = TRUE
+  write_files = TRUE,
+  dest_dir = getwd()
 )
 }
 \arguments{
@@ -20,6 +21,8 @@ to see a list of fields and their potential values.}
 \item{return_tibbles}{Whether to return the data (if TRUE) or only download the files (if FALSE).}
 
 \item{write_files}{Whether to write the XLS files locally.}
+
+\item{dest_dir}{Directory in which to write XLS files. Defaults to working directory.}
 }
 \value{
 A list of a \link[tibble:tibble-package]{tibbles} if return_tibbles = TRUE, a single tibble if only
