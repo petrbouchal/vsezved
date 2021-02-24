@@ -254,7 +254,7 @@ vz_get_directory <- function(tables = c("addresses", "schools",
   names(paths) <- names(responses)
 
   if(return_tibbles) {
-    rslt <- purrr::map(paths, vz_load_stistko)
+    rslt <- purrr::map(paths, vz_load_directory)
     if(length(rslt) == 1) rslt <- rslt[[1]]
   } else {
     rslt <- paths
@@ -263,7 +263,17 @@ vz_get_directory <- function(tables = c("addresses", "schools",
   return(rslt)
 }
 
-vz_load_stistko <- function(path) {
+
+
+#' Load directory XLS file
+#'
+#' Read and clean up quasi-XLSX file retrieved by `vz_write_directory_quasixls`
+#'
+#' @param path Path to .xls file retrieved by `vz_write_directory_quasixls`
+#'
+#' @return a tibble
+#' @export
+vz_load_directory <- function(path) {
   tbl_html <- xml2::read_html(path)
   df <- rvest::html_table(tbl_html, header = TRUE, convert = FALSE)[[1]]
   df_tbl <- suppressMessages(tibble::as_tibble(df, .name_repair = janitor::make_clean_names))
