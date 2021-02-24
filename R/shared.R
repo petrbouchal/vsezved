@@ -8,6 +8,16 @@ ua_string <- paste0("User-Agent: ", ua)
 ua_list <- list(`User-Agent` = ua)
 
 
+
+#' Get URL of file in CKAN dataset
+#'
+#' Currently assumes we are getting register XML data
+#'
+#' @param package_id package ID. Leave as NULL for whole-country school register.
+#' @param base_url CKAN base URL. Leave as NULL for MSMT CKAN.
+#'
+#' @return a URL, character of length 1
+#' @export
 vz_get_ckan_url <- function(package_id = NULL, base_url = NULL) {
 
   if(is.null(package_id)) package_id <- register_ckan_id
