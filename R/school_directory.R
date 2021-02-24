@@ -47,6 +47,7 @@ vz_get_search_fields <- function(search_form = NULL) {
 #' @inheritSection vz_get_directory Tables
 #'
 #' @return HTTP response parsable with response_to_quasixls or generally with {httr}.
+#' @export
 vz_get_directory_responses <- function(tables = c("addresses", "schools",
                                                   "locations", "specialisations"),
                                        ...) {
@@ -129,18 +130,20 @@ vz_get_directory_responses <- function(tables = c("addresses", "schools",
 #' Turn a httr response created by `vz_get_directory_responses()` into and XLS file
 #'
 #' @param response a httr respons returned by `vz_get_directory_responses()`
-#' @param tempfile whether to write into a tempfile (TRUE, the default), or locally
+#' @inheritParams vz_get_directory
 #'
 #' @return character of length 1: path to XLS file
-response_to_quasixls <- function(response, tempfile = TRUE) {
+#' @export
+vz_write_directory_quasixls <- function(response, write_file = FALSE, dest_dir = getwd()) {
 
-  if(tempfile) {
+  if(!write_file) {
     path <- tempfile(fileext = ".xls")
   } else {
     attachment_string <- response$response$headers$`content-disposition`
-    path <- regmatches(attachment_string,
+    filename <- regmatches(attachment_string,
                        regexpr("(?<=filename\\=)(\\w*.xls$)",
                                attachment_string, perl = T))
+    path <- file.path(dest_dir, filename)
   }
 
   r3_c_bin <- httr::content(response$response)
@@ -245,7 +248,7 @@ vz_get_directory <- function(tables = c("addresses", "schools",
 
   responses <- vz_get_directory_responses(tables = tabs, ...)
 
-  paths <- purrr::map_chr(responses, response_to_quasixls, !write_files)
+  paths <- purrr::map_chr(responses, vz_write_directory_quasixls, write_files)
   names(paths) <- names(responses)
 
   if(return_tibbles) {
