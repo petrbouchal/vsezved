@@ -5,12 +5,15 @@
 #' Uses CKAN to find the correct URL in the education ministry's [open data catalogue](https://data.msmt.cz/) and retrieve the file.
 #'
 #' @inheritParams vz_get_register
+#' @param url
+#' @param package_id
 #'
 #' @return Path to downloaded (XML) file.
 #' @importFrom tidyr unnest_wider unnest_longer unnest unnest_auto
 vz_get_register_xml <- function(url = NULL,
                                 package_id = NULL,
-                                write_file = F) {
+                                write_file = F,
+                                dest_dir = getwd()) {
 
   if(is.null(url) & is.null(dataset_id)) {
     urlf <- vz_get_ckan_url()
@@ -26,7 +29,9 @@ vz_get_register_xml <- function(url = NULL,
     urlf <- url
   }
 
-  dl_path <- ifelse(write_file, "registr.xml", tempfile(fileext = ".xml"))
+  dl_path <- ifelse(write_file,
+                    file.path(dest_dir, "registr.xml"),
+                    tempfile(fileext = ".xml"))
 
   msg_download_size(urlf)
 
@@ -143,7 +148,7 @@ vz_load_register <- function(dl_path, tables = c("organisations", "schools", "lo
 #' turns it into a tibble, cleaning up names and dropping some uninteresting
 #' columns (this may change as the package matures.)
 #'
-#' @param dataset_id which dataset to download; used to select data dumps for individual regions or whole country.
+#' @param package_id which dataset to download; used to select data dumps for individual regions or whole country.
 #'  Currently only the default is implemented (whhole country).
 #' @param tables CURRENTLY IGNORED; the first three tables are returned. Which tables to return. Can be one or more of "organisations",
 #'   "schools", "locations" or "specialisations".
@@ -152,10 +157,33 @@ vz_load_register <- function(dl_path, tables = c("organisations", "schools", "lo
 #'
 #' @return a [tibble][tibble::tibble-package] or list of tibbles if multiple
 #'   table names are passed to `tables`.
-vz_get_register <- function(dataset_id = "rejstrik-skol-a-skolskych-zarizeni-cela-cr",
-                            tables = "organisations", write_file = TRUE) {
+vz_get_register <- function(package_id = NULL,
+                            url = NULL,
+                            tables = c("organisations", "schools", "locations",
+                                       "specialisations"),
+                            write_file = TRUE,
+                            dest_dir = getwd()) {
 
-  dl_path <- vz_get_register_xml(dataset_id = dataset_id, write_file = write_file)
+  available_tables <- c("organisations", "schools", "locations",
+                        "specialisations")
+
+  if(missing(tables)) {
+    tables <- "organisations"
+    ui_info(c("{ui_field('tables')} is not set. Using {ui_value('addresses')}."))
+  }
+
+  tryCatch({tabs <- match.arg(tables, several.ok = T)},
+           error = function(e) {
+             ui_stop("Table(s) {ui_value(tables)} not available")
+           })
+  if(all(!all.equal(tabs, tables) == TRUE)) {
+    diff_tables <- setdiff(tables, tabs)
+    ui_stop("Table(s) {ui_value(diff_tables)} not available")
+  }
+
+  dl_path <- vz_get_register_xml(package_id = package_id,
+                                 write_file = write_file,
+                                 dest_dir = dest_dir)
   ui_done("Data downloaded. Reading (this may take a while)")
   return(vz_load_register(dl_path, tables = tables))
   # write_parquet(vz_mista, "stistko/od_mista.parquet")
