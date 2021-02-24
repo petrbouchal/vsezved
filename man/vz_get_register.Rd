@@ -5,20 +5,25 @@
 \title{Download and read school register}
 \usage{
 vz_get_register(
-  dataset_id = "rejstrik-skol-a-skolskych-zarizeni-cela-cr",
-  tables = "organisations",
-  write_file = TRUE
+  package_id = NULL,
+  url = NULL,
+  tables = c("organisations", "schools", "locations", "specialisations"),
+  write_file = TRUE,
+  dest_dir = getwd()
 )
 }
 \arguments{
-\item{dataset_id}{which dataset to download; used to select data dumps for individual regions or whole country.
-Currently only the default is implemented (whhole country).}
+\item{package_id}{used to point to per-region datasets (see \code{vz_list_registers()}); if left unset, defaults to state-wide data}
+
+\item{url}{URL; if left to NULL, will use internal default}
 
 \item{tables}{CURRENTLY IGNORED; the first three tables are returned. Which tables to return. Can be one or more of "organisations",
 "schools", "locations" or "specialisations".}
 
 \item{write_file}{Whether to keep the downloaded XML file.
 Currently only writing to the working directory is supported.}
+
+\item{dest_dir}{Where to write the resulting XML}
 }
 \value{
 a \link[tibble:tibble-package]{tibble} or list of tibbles if multiple

@@ -5,8 +5,8 @@
 #' Uses CKAN to find the correct URL in the education ministry's [open data catalogue](https://data.msmt.cz/) and retrieve the file.
 #'
 #' @inheritParams vz_get_register
-#' @param url
-#' @param package_id
+#' @param url URL; if left to NULL, will use internal default
+#' @param package_id used to point to per-region datasets (see `vz_list_registers()`); if left unset, defaults to state-wide data
 #'
 #' @return Path to downloaded (XML) file.
 #' @importFrom tidyr unnest_wider unnest_longer unnest unnest_auto
@@ -15,16 +15,16 @@ vz_get_register_xml <- function(url = NULL,
                                 write_file = F,
                                 dest_dir = getwd()) {
 
-  if(is.null(url) & is.null(dataset_id)) {
+  if(is.null(url) & is.null(package_id)) {
     urlf <- vz_get_ckan_url()
-    ui_info("Neither {ui_field('dataset_id')} nor {ui_field('url')} set.",
+    ui_info("Neither {ui_field('package_id')} nor {ui_field('url')} set.",
             "Getting data package {ui_value(register_ckan_id} from {ui_path(msmt_ckan_base_url)}")
   } else if(is.null(url) & !is.null(package_id)) {
     urlf <- vz_get_ckan_url(package_id = package_id)
   } else if(!is.null(url) & !is.null(package_id)) {
     urlf <- url
-    ui_info("Both {ui_field('dataset_id')} and {ui_field('url')} set.",
-            "Using {ui_field('dataset_id')} ({ui_value(dataset_id)})")
+    ui_info("Both {ui_field('package_id')} and {ui_field('url')} set.",
+            "Using {ui_field('package_id')} ({ui_value(package_id)})")
   } else {
     urlf <- url
   }
@@ -148,12 +148,12 @@ vz_load_register <- function(dl_path, tables = c("organisations", "schools", "lo
 #' turns it into a tibble, cleaning up names and dropping some uninteresting
 #' columns (this may change as the package matures.)
 #'
-#' @param package_id which dataset to download; used to select data dumps for individual regions or whole country.
-#'  Currently only the default is implemented (whhole country).
 #' @param tables CURRENTLY IGNORED; the first three tables are returned. Which tables to return. Can be one or more of "organisations",
 #'   "schools", "locations" or "specialisations".
 #' @param write_file Whether to keep the downloaded XML file.
 #'   Currently only writing to the working directory is supported.
+#' @param dest_dir Where to write the resulting XML
+#' @inheritParams vz_get_register_xml
 #'
 #' @return a [tibble][tibble::tibble-package] or list of tibbles if multiple
 #'   table names are passed to `tables`.
