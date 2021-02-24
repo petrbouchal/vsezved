@@ -16,14 +16,3 @@ vz_get_ckan_url <- function(package_id, base_url) {
   }
   return(url)
 }
-
-vz_get_url <- function(type = c("directory", "register"),
-                       register_id = "rejstrik-skol-a-skolskych-zarizeni-cela-cr") {
-  type = match.arg(type)
-  url = switch (type,
-                directory = paste0(stistko_base_url, "vybskolrn.asp"),
-                register = vz_get_ckan_url(register_id, msmt_ckan_base_url)
-  )
-  check_server(url)
-  return(url)
-}

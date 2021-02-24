@@ -1,18 +1,10 @@
-
-vz_get_url <- function(type = c("directory", "register")) {
-  type = match.arg(type)
-  url = switch (type,
-    directory = paste0(stistko_base_url, "vybskolrn.asp"),
-    register = paste0()
-  )
-}
-
 #' Get search page for directory search
 #'
 #' @return an rvest_session object containing the session for the search page.
 #'   Can be passed on to `vz_get_search_form()`.
 vz_get_search_page <- function() {
-  url <- vz_get_url("directory")
+  url <- paste0(stistko_base_url, "vybskolrn.asp")
+  check_server(url)
   return(rvest::session(url, httr::user_agent(ua)))
 }
 
