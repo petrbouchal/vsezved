@@ -10,6 +10,9 @@
     <loc>http://petrbouchal.xyz/vsezved/reference/vsezved-package.html</loc>
   </url>
   <url>
+    <loc>http://petrbouchal.xyz/vsezved/reference/vz_get_ckan_url.html</loc>
+  </url>
+  <url>
     <loc>http://petrbouchal.xyz/vsezved/reference/vz_get_directory.html</loc>
   </url>
   <url>
@@ -26,6 +29,9 @@
   </url>
   <url>
     <loc>http://petrbouchal.xyz/vsezved/reference/vz_get_search_page.html</loc>
+  </url>
+  <url>
+    <loc>http://petrbouchal.xyz/vsezved/reference/vz_list_registers.html</loc>
   </url>
   <url>
     <loc>http://petrbouchal.xyz/vsezved/reference/vz_load_directory.html</loc>
