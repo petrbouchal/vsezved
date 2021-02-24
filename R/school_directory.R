@@ -1,6 +1,6 @@
 #' Get search page for directory search
 #'
-#' @param base_url. If left unset, defaults to internally recorded base URL
+#' @param base_url If left unset, defaults to internally recorded base URL
 #' @return an rvest_session object containing the session for the search page.
 #'   Can be passed on to `vz_get_search_form()`.
 #' @export
