@@ -161,18 +161,23 @@ columns (this may change as the package matures.)</p>
     </div>
 
     <pre class="usage"><span class='fu'>vz_get_register</span><span class='op'>(</span>
-  dataset_id <span class='op'>=</span> <span class='st'>"rejstrik-skol-a-skolskych-zarizeni-cela-cr"</span>,
-  tables <span class='op'>=</span> <span class='st'>"organisations"</span>,
-  write_file <span class='op'>=</span> <span class='cn'>TRUE</span>
+  package_id <span class='op'>=</span> <span class='cn'>NULL</span>,
+  url <span class='op'>=</span> <span class='cn'>NULL</span>,
+  tables <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"organisations"</span>, <span class='st'>"schools"</span>, <span class='st'>"locations"</span>, <span class='st'>"specialisations"</span><span class='op'>)</span>,
+  write_file <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dest_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dataset_id</th>
-      <td><p>which dataset to download; used to select data dumps for individual regions or whole country.
-Currently only the default is implemented (whhole country).</p></td>
+      <th>package_id</th>
+      <td><p>used to point to per-region datasets (see <code>vz_list_registers()</code>); if left unset, defaults to state-wide data</p></td>
+    </tr>
+    <tr>
+      <th>url</th>
+      <td><p>URL; if left to NULL, will use internal default</p></td>
     </tr>
     <tr>
       <th>tables</th>
@@ -183,6 +188,10 @@ Currently only the default is implemented (whhole country).</p></td>
       <th>write_file</th>
       <td><p>Whether to keep the downloaded XML file.
 Currently only writing to the working directory is supported.</p></td>
+    </tr>
+    <tr>
+      <th>dest_dir</th>
+      <td><p>Where to write the resulting XML</p></td>
     </tr>
     </table>
 

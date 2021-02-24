@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get search page for directory search — vz_get_search_page • vsezved</title>
+<title>Load directory XLS file — vz_load_directory • vsezved</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Get search page for directory search — vz_get_search_page" />
-<meta property="og:description" content="Get search page for directory search" />
+<meta property="og:title" content="Load directory XLS file — vz_load_directory" />
+<meta property="og:description" content="Read and clean up quasi-XLSX file retrieved by vz_write_directory_quasixls" />
 <meta property="og:image" content="http://petrbouchal.xyz/vsezved/reference/figures/card.png" />
 <meta property="og:image:alt" content="vsezved: An R package for using data on Czech schools" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -145,30 +145,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get search page for directory search</h1>
+    <h1>Load directory XLS file</h1>
     <small class="dont-index">Source: <a href='https://github.com/petrbouchal/vsezved/blob/master/R/school_directory.R'><code>R/school_directory.R</code></a></small>
-    <div class="hidden name"><code>vz_get_search_page.Rd</code></div>
+    <div class="hidden name"><code>vz_load_directory.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get search page for directory search</p>
+    <p>Read and clean up quasi-XLSX file retrieved by <code>vz_write_directory_quasixls</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>vz_get_search_page</span><span class='op'>(</span>base_url <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>vz_load_directory</span><span class='op'>(</span><span class='va'>path</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>base_url</th>
-      <td><p>If left unset, defaults to internally recorded base URL</p></td>
+      <th>path</th>
+      <td><p>Path to .xls file retrieved by <code>vz_write_directory_quasixls</code></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>an rvest_session object containing the session for the search page.
-Can be passed on to <code><a href='vz_get_search_form.html'>vz_get_search_form()</a></code>.</p>
+    <p>a <a href='https://tibble.tidyverse.org/reference/tibble-package.html'>tibble</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

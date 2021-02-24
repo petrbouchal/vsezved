@@ -7,9 +7,6 @@
     <loc>http://petrbouchal.xyz/vsezved/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/response_to_quasixls.html</loc>
-  </url>
-  <url>
     <loc>http://petrbouchal.xyz/vsezved/reference/vsezved-package.html</loc>
   </url>
   <url>
@@ -31,6 +28,12 @@
     <loc>http://petrbouchal.xyz/vsezved/reference/vz_get_search_page.html</loc>
   </url>
   <url>
+    <loc>http://petrbouchal.xyz/vsezved/reference/vz_load_directory.html</loc>
+  </url>
+  <url>
     <loc>http://petrbouchal.xyz/vsezved/reference/vz_load_register.html</loc>
+  </url>
+  <url>
+    <loc>http://petrbouchal.xyz/vsezved/reference/vz_write_directory_quasixls.html</loc>
   </url>
 </urlset>

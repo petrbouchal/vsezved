@@ -172,7 +172,8 @@ register.</p>
   tables <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"addresses"</span>, <span class='st'>"schools"</span>, <span class='st'>"locations"</span>, <span class='st'>"specialisations"</span><span class='op'>)</span>,
   <span class='va'>...</span>,
   return_tibbles <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  write_files <span class='op'>=</span> <span class='cn'>TRUE</span>
+  write_files <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dest_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -195,6 +196,10 @@ to see a list of fields and their potential values.</p></td>
       <th>write_files</th>
       <td><p>Whether to write the XLS files locally.</p></td>
     </tr>
+    <tr>
+      <th>dest_dir</th>
+      <td><p>Directory in which to write XLS files. Defaults to working directory.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -208,8 +213,8 @@ with the corresponding name, unless the function was called with a <code>tables<
 parameter of length one, in which case the result is a tibble;
 if return_tibbles is FALSE, the result is a character vector of file paths.
 Note that the downloaded XLS files are in fact HTML files and you are best
-off loading them using <code>vz_load_directory()</code> and tidying with
-<code>vz_process_directory</code>, though they can be opened in Excel too.</p>
+off loading them using <code><a href='vz_load_directory.html'>vz_load_directory()</a></code> and tidying with
+<code>vz_load_directory</code>, though they can be opened in Excel too.</p>
     <h2 class="hasAnchor" id="tables"><a class="anchor" href="#tables"></a>Tables</h2>
 
     
@@ -248,13 +253,13 @@ it would be done manually.</p>
 using the <code>tables</code> argument. This means that only one initial search is
 peformed.</p></li>
 <li><p>Only ask for the tables you need.</p></li>
-<li><p>If you need a subset of the data, use the <code>fields</code> argument</p></li>
+<li><p>If you need a subset of the data, use the <code>fields</code> (...) argument</p></li>
 <li><p>If you need multiple subsets of the data,
-try to do that via the <code>fields</code> argument too, though that may not always be
+try to do that via the <code>fields</code> (...) argument too, though that may not always be
 possible.</p></li>
 <li><p>If you are downloading a large dump and reusing it in a
 pipeline, keep the downloaded XLS files (or your own export) locally (setting
-<code>keep_files</code> to TRUE), use caching and avoid calling this function repeatedly
+<code>write_files</code> to TRUE), use caching and avoid calling this function repeatedly
 (ideally make any reruns conditional on the age of the stored export
 or use a pipeline management framework such as targets.</p></li>
 </ol>

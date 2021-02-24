@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get search page for directory search — vz_get_search_page • vsezved</title>
+<title>Turn a httr response created by vz_get_directory_responses() into and XLS file — vz_write_directory_quasixls • vsezved</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Get search page for directory search — vz_get_search_page" />
-<meta property="og:description" content="Get search page for directory search" />
+<meta property="og:title" content="Turn a httr response created by vz_get_directory_responses() into and XLS file — vz_write_directory_quasixls" />
+<meta property="og:description" content="Turn a httr response created by vz_get_directory_responses() into and XLS file" />
 <meta property="og:image" content="http://petrbouchal.xyz/vsezved/reference/figures/card.png" />
 <meta property="og:image:alt" content="vsezved: An R package for using data on Czech schools" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -145,30 +145,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get search page for directory search</h1>
+    <h1>Turn a httr response created by <code>vz_get_directory_responses()</code> into and XLS file</h1>
     <small class="dont-index">Source: <a href='https://github.com/petrbouchal/vsezved/blob/master/R/school_directory.R'><code>R/school_directory.R</code></a></small>
-    <div class="hidden name"><code>vz_get_search_page.Rd</code></div>
+    <div class="hidden name"><code>vz_write_directory_quasixls.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get search page for directory search</p>
+    <p>Turn a httr response created by <code><a href='vz_get_directory_responses.html'>vz_get_directory_responses()</a></code> into and XLS file</p>
     </div>
 
-    <pre class="usage"><span class='fu'>vz_get_search_page</span><span class='op'>(</span>base_url <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>vz_write_directory_quasixls</span><span class='op'>(</span><span class='va'>response</span>, write_file <span class='op'>=</span> <span class='cn'>FALSE</span>, dest_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>base_url</th>
-      <td><p>If left unset, defaults to internally recorded base URL</p></td>
+      <th>response</th>
+      <td><p>a httr respons returned by <code><a href='vz_get_directory_responses.html'>vz_get_directory_responses()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>write_file</th>
+      <td><p>Whether to write the XLS files locally.</p></td>
+    </tr>
+    <tr>
+      <th>dest_dir</th>
+      <td><p>Directory in which to write XLS files. Defaults to working directory.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>an rvest_session object containing the session for the search page.
-Can be passed on to <code><a href='vz_get_search_form.html'>vz_get_search_form()</a></code>.</p>
+    <p>character of length 1: path to XLS file</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

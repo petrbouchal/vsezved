@@ -154,7 +154,10 @@
     <p>Read XML register and return tibble(s) with the register tables.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>vz_load_register</span><span class='op'>(</span><span class='va'>dl_path</span>, tables <span class='op'>=</span> <span class='st'>"organisations"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>vz_load_register</span><span class='op'>(</span>
+  <span class='va'>dl_path</span>,
+  tables <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"organisations"</span>, <span class='st'>"schools"</span>, <span class='st'>"locations"</span>, <span class='st'>"specialisations"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
