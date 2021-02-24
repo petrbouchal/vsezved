@@ -53,8 +53,9 @@ vz_get_register_xml <- function(url = NULL,
 vz_load_register <- function(dl_path, tables = c("organisations", "schools", "locations",
                                                  "specialisations")) {
 
-  available_tables <- c("organisations", "schools", "locations",
-                        "specialisations")
+  # available_tables <- c("organisations", "schools", "locations",
+  #                       "specialisations")
+  available_tables <- c("organisations", "schools", "locations")
 
   if(missing(tables)) {
     tables <- "organisations"
@@ -79,64 +80,86 @@ vz_load_register <- function(dl_path, tables = c("organisations", "schools", "lo
     unnest_wider(skola, simplify = T) %>%
     unnest_longer(RedIzo)
 
-  vz_skolskeosoby <- sklf %>%
-    unnest_longer(ICO) %>%
-    unnest_wider(Reditelstvi, simplify = T) %>%
-    unnest(c(RedPlnyNazev, RedZkracenyNazev, RedRUAINKod,
-             PravniForma, DruhZrizovatele)) %>%
-    unnest(c(RedPlnyNazev, RedZkracenyNazev, RedRUAINKod,
-             PravniForma, DruhZrizovatele)) %>%
-    unnest_wider(Reditel, simplify = T) %>%
-    unnest_longer(c(ReditelJmeno)) %>%
-    select(-matches("Adresa|^Okres$|^ORP$"),
-           -ReditelJeStatutar,
-           -SkolyZarizeni, -StatutarniOrgany, -DobaZrizeniSubjektu) %>%
-    mutate(zriz_ICO = purrr::map(Zrizovatele, `[[`, "Zrizovatel") %>%
-             purrr::map(`[[`, "ZrizICO") %>% purrr::map(`[[`, 1),
-           zriz_ICO = ifelse(is.null(zriz_ICO[[1]]), NA, zriz_ICO) %>%
-             purrr::map_chr(`[[`, 1)) %>%
-    select(-Zrizovatele) %>%
-    rename(redizo = RedIzo)
+  reg_list <- list()
 
-  # write_parquet(vz_skolskeosoby, "stistko/od_skolskeosoby.parquet")
+  if("organisations" %in% tabs) {
+    vz_skolskeosoby <- sklf %>%
+      unnest_longer(ICO) %>%
+      unnest_wider(Reditelstvi, simplify = T) %>%
+      unnest(c(RedPlnyNazev, RedZkracenyNazev, RedRUAINKod,
+               PravniForma, DruhZrizovatele)) %>%
+      unnest(c(RedPlnyNazev, RedZkracenyNazev, RedRUAINKod,
+               PravniForma, DruhZrizovatele)) %>%
+      unnest_wider(Reditel, simplify = T) %>%
+      unnest_longer(c(ReditelJmeno)) %>%
+      select(-matches("Adresa|^Okres$|^ORP$"),
+             -ReditelJeStatutar,
+             -SkolyZarizeni, -StatutarniOrgany, -DobaZrizeniSubjektu) %>%
+      mutate(zriz_ICO = purrr::map(Zrizovatele, `[[`, "Zrizovatel") %>%
+               purrr::map(`[[`, "ZrizICO") %>% purrr::map(`[[`, 1),
+             zriz_ICO = ifelse(is.null(zriz_ICO[[1]]), NA, zriz_ICO) %>%
+               purrr::map_chr(`[[`, 1)) %>%
+      select(-Zrizovatele) %>%
+      rename(redizo = RedIzo) %>%
+      janitor::clean_names()
 
-  vz_zarizeni <- sklf %>%
-    select(redizo = RedIzo, SkolyZarizeni) %>%
-    unnest_longer(SkolyZarizeni) %>%
-    unnest_wider(SkolyZarizeni) %>%
-    unnest_longer(SkolaPlnyNazev) %>%
-    unnest_longer(SkolaDruhTyp) %>%
-    unnest_longer(SkolaKapacita) %>%
-    unnest_longer(SkolaKapacitaJednotka) %>%
-    unnest_longer(SkolaJazyk) %>%
-    unnest_longer(IZO) %>%
-    mutate(SkolaKapacita = dplyr::if_else(grepl("[a-zA-Z]",
-                                                SkolaKapacita),
-                                          NA_character_,
-                                          SkolaKapacita)) %>%
-    mutate(SkolaKapacita = dplyr::if_else(!is.na(SkolaKapacita),
-                                          as.integer(SkolaKapacita),
-                                          NA_integer_)) %>%
-    rename(izo = IZO) %>%
-    select(-dplyr::starts_with("SkolaDatum"),
-           -dplyr::matches("Mista|Obor"))
 
-  # write_parquet(vz_zarizeni, "stistko/od_zarizeni.parquet")
+    reg_list <- append(reg_list, list(vz_skolskeosoby))
+    names(reg_list) <- c(names(reg_list), "organisations")
+  }
 
-  vz_mista <- sklf %>%
-    select(redizo = RedIzo, SkolyZarizeni) %>%
-    unnest_longer(SkolyZarizeni) %>%
-    unnest_wider(SkolyZarizeni) %>%
-    unnest_longer(IZO) %>%
-    select(redizo, IZO, SkolaMistaVykonuCinnosti) %>%
-    unnest_longer(SkolaMistaVykonuCinnosti) %>%
-    unnest_wider(SkolaMistaVykonuCinnosti) %>%
-    unnest_longer(IDMista) %>%
-    unnest_longer(MistoDruhTyp) %>%
-    unnest_longer(MistoRUAINKod) %>%
-    select(redizo, izo = IZO, IDMista, MistoDruhTyp, ADM_KOD = MistoRUAINKod)
+  if("schools" %in% tabs) {
 
-  return(list(vz_skolskeosoby, vz_zarizeni, vz_mista))
+    vz_zarizeni <- sklf %>%
+      select(redizo = RedIzo, SkolyZarizeni) %>%
+      unnest_longer(SkolyZarizeni) %>%
+      unnest_wider(SkolyZarizeni) %>%
+      unnest_longer(SkolaPlnyNazev) %>%
+      unnest_longer(SkolaDruhTyp) %>%
+      unnest_longer(SkolaKapacita) %>%
+      unnest_longer(SkolaKapacitaJednotka) %>%
+      unnest_longer(SkolaJazyk) %>%
+      unnest_longer(IZO) %>%
+      mutate(SkolaKapacita = dplyr::if_else(grepl("[a-zA-Z]",
+                                                  SkolaKapacita),
+                                            NA_character_,
+                                            SkolaKapacita)) %>%
+      mutate(SkolaKapacita = dplyr::if_else(!is.na(SkolaKapacita),
+                                            as.integer(SkolaKapacita),
+                                            NA_integer_)) %>%
+      rename(izo = IZO) %>%
+      select(-dplyr::starts_with("SkolaDatum"),
+             -dplyr::matches("Mista|Obor")) %>%
+      janitor::clean_names()
+
+    reg_list_names_orig <- names(reg_list)
+    reg_list <- append(reg_list, list(vz_zarizeni))
+    names(reg_list) <- c(reg_list_names_orig, "schools")
+  }
+
+  if("locations" %in% tabs) {
+    vz_mista <- sklf %>%
+      select(redizo = RedIzo, SkolyZarizeni) %>%
+      unnest_longer(SkolyZarizeni) %>%
+      unnest_wider(SkolyZarizeni) %>%
+      unnest_longer(IZO) %>%
+      select(redizo, IZO, SkolaMistaVykonuCinnosti) %>%
+      unnest_longer(SkolaMistaVykonuCinnosti) %>%
+      unnest_wider(SkolaMistaVykonuCinnosti) %>%
+      unnest_longer(IDMista) %>%
+      unnest_longer(MistoDruhTyp) %>%
+      unnest_longer(MistoRUAINKod) %>%
+      select(redizo, izo = IZO, IDMista, MistoDruhTyp, ADM_KOD = MistoRUAINKod) %>%
+      janitor::clean_names()
+
+    reg_list_names_orig <- names(reg_list)
+    reg_list <- append(reg_list, list(vz_mista))
+    names(reg_list) <- c(reg_list_names_orig, "locations")
+  }
+
+  reg_list <- reg_list[tabs]
+
+  return(reg_list)
 
 }
 
@@ -148,8 +171,8 @@ vz_load_register <- function(dl_path, tables = c("organisations", "schools", "lo
 #' turns it into a tibble, cleaning up names and dropping some uninteresting
 #' columns (this may change as the package matures.)
 #'
-#' @param tables CURRENTLY IGNORED; the first three tables are returned. Which tables to return. Can be one or more of "organisations",
-#'   "schools", "locations" or "specialisations".
+#' @param tables Which tables to return. Can be one or more of "organisations",
+#'   "schools", "locations" or "specialisations" (specialisations not yet available via the package).
 #' @param write_file Whether to keep the downloaded XML file.
 #'   Currently only writing to the working directory is supported.
 #' @param dest_dir Where to write the resulting XML
@@ -164,8 +187,9 @@ vz_get_register <- function(package_id = NULL,
                             write_file = TRUE,
                             dest_dir = getwd()) {
 
-  available_tables <- c("organisations", "schools", "locations",
-                        "specialisations")
+  # available_tables <- c("organisations", "schools", "locations",
+  #                       "specialisations")
+  available_tables <- c("organisations", "schools", "locations")
 
   if(missing(tables)) {
     tables <- "organisations"

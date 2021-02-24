@@ -12,8 +12,8 @@ vz_load_register(
 \arguments{
 \item{dl_path}{Path to XML file output by \code{vz_get_register_xml()}.}
 
-\item{tables}{CURRENTLY IGNORED; the first three tables are returned. Which tables to return. Can be one or more of "organisations",
-"schools", "locations" or "specialisations".}
+\item{tables}{Which tables to return. Can be one or more of "organisations",
+"schools", "locations" or "specialisations" (specialisations not yet available via the package).}
 }
 \value{
 a \link[tibble:tibble-package]{tibble} or list of tibbles if multiple

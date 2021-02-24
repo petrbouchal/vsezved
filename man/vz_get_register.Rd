@@ -17,8 +17,8 @@ vz_get_register(
 
 \item{url}{URL; if left to NULL, will use internal default}
 
-\item{tables}{CURRENTLY IGNORED; the first three tables are returned. Which tables to return. Can be one or more of "organisations",
-"schools", "locations" or "specialisations".}
+\item{tables}{Which tables to return. Can be one or more of "organisations",
+"schools", "locations" or "specialisations" (specialisations not yet available via the package).}
 
 \item{write_file}{Whether to keep the downloaded XML file.
 Currently only writing to the working directory is supported.}
