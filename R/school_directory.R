@@ -1,9 +1,14 @@
 #' Get search page for directory search
 #'
+#' @param base_url. If left unset, defaults to internally recorded base URL
 #' @return an rvest_session object containing the session for the search page.
 #'   Can be passed on to `vz_get_search_form()`.
-vz_get_search_page <- function() {
-  url <- paste0(stistko_base_url, "vybskolrn.asp")
+#' @export
+vz_get_search_page <- function(base_url = NULL) {
+
+  if(is.null(base_url)) base_url <- stistko_base_url
+
+  url <- paste0(base_url, "vybskolrn.asp")
   check_server(url)
   return(rvest::session(url, httr::user_agent(ua)))
 }
