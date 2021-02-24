@@ -10,6 +10,7 @@
 #'
 #' @return Path to downloaded (XML) file.
 #' @importFrom tidyr unnest_wider unnest_longer unnest unnest_auto
+#' @export
 vz_get_register_xml <- function(url = NULL,
                                 package_id = NULL,
                                 write_file = F,
