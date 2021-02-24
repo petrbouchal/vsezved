@@ -186,10 +186,20 @@ vz_get_register <- function(package_id = NULL,
                                  dest_dir = dest_dir)
   ui_done("Data downloaded. Reading (this may take a while)")
   return(vz_load_register(dl_path, tables = tables))
-  # write_parquet(vz_mista, "stistko/od_mista.parquet")
 }
 
-vz_list_registers <- function() {
-  ckanr::package_list(url = msmt_ckan_base_url, as = "table")
+
+#' List packages (registers) available from CKAN catalogue
+#'
+#' By default, searches MSMT
+#'
+#' @param url If left to NULL, searches MSMT catalogue at <data.msmt.cz>
+#' @return a character vector of IDs
+#' @export
+vz_list_registers <- function(url = NULL) {
+
+  if(is.null(url)) url <- msmt_ckan_base_url
+
+  ckanr::package_list(url = url, as = "table")
 }
 
