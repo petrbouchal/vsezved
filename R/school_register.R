@@ -120,7 +120,6 @@ vz_load_register <- function(dl_path, tables = c("organisations", "schools", "lo
 
   vz_mista <- sklf %>%
     select(redizo = RedIzo, SkolyZarizeni) %>%
-    filter(redizo != "691014086") %>%
     unnest_longer(SkolyZarizeni) %>%
     unnest_wider(SkolyZarizeni) %>%
     unnest_longer(IZO) %>%
