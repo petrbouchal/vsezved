@@ -181,6 +181,7 @@ vz_load_register <- function(dl_path, tables = c("organisations", "schools", "lo
 #'
 #' @return a [tibble][tibble::tibble-package] or list of tibbles if multiple
 #'   table names are passed to `tables`.
+#' @export
 vz_get_register <- function(package_id = NULL,
                             url = NULL,
                             tables = c("organisations", "schools", "locations",
