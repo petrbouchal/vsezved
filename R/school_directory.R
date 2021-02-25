@@ -278,6 +278,9 @@ vz_load_directory <- function(path) {
   tbl_html <- xml2::read_html(path)
   df <- rvest::html_table(tbl_html, header = TRUE, convert = FALSE)[[1]]
   df_tbl <- suppressMessages(tibble::as_tibble(df, .name_repair = janitor::make_clean_names))
-  return(df_tbl)
+  df_tbl2 <- df_tbl %>%
+    mutate(dplyr::across(dplyr::matches("\\w"),
+                         ~dplyr::na_if(., "")))
+  return(df_tbl2)
 }
 
