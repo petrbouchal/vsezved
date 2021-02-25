@@ -101,7 +101,7 @@ vz_load_register <- function(dl_path, tables = c("organisations", "schools", "lo
              zriz_ICO = ifelse(is.null(zriz_ICO[[1]]), NA, zriz_ICO) %>%
                purrr::map_chr(`[[`, 1)) %>%
       select(-Zrizovatele) %>%
-      rename(redizo = RedIzo) %>%
+      rename(red_izo = RedIzo) %>%
       janitor::clean_names()
 
 
@@ -112,7 +112,7 @@ vz_load_register <- function(dl_path, tables = c("organisations", "schools", "lo
   if("schools" %in% tabs) {
 
     vz_zarizeni <- sklf %>%
-      select(redizo = RedIzo, SkolyZarizeni) %>%
+      select(red_izo = RedIzo, SkolyZarizeni) %>%
       unnest_longer(SkolyZarizeni) %>%
       unnest_wider(SkolyZarizeni) %>%
       unnest_longer(SkolaPlnyNazev) %>%
@@ -140,17 +140,17 @@ vz_load_register <- function(dl_path, tables = c("organisations", "schools", "lo
 
   if("locations" %in% tabs) {
     vz_mista <- sklf %>%
-      select(redizo = RedIzo, SkolyZarizeni) %>%
+      select(red_izo = RedIzo, SkolyZarizeni) %>%
       unnest_longer(SkolyZarizeni) %>%
       unnest_wider(SkolyZarizeni) %>%
       unnest_longer(IZO) %>%
-      select(redizo, IZO, SkolaMistaVykonuCinnosti) %>%
+      select(red_izo, IZO, SkolaMistaVykonuCinnosti) %>%
       unnest_longer(SkolaMistaVykonuCinnosti) %>%
       unnest_wider(SkolaMistaVykonuCinnosti) %>%
       unnest_longer(IDMista) %>%
       unnest_longer(MistoDruhTyp) %>%
       unnest_longer(MistoRUAINKod) %>%
-      select(redizo, izo = IZO, IDMista, MistoDruhTyp, ADM_KOD = MistoRUAINKod) %>%
+      select(red_izo, izo = IZO, IDMista, MistoDruhTyp, ADM_KOD = MistoRUAINKod) %>%
       janitor::clean_names()
 
     reg_list_names_orig <- names(reg_list)
