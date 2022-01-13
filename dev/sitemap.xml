@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://petrbouchal.xyz/vsezved/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>http://petrbouchal.xyz/vsezved/CONTRIBUTING.html</loc>
+  </url>
+  <url>
+    <loc>http://petrbouchal.xyz/vsezved/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>http://petrbouchal.xyz/vsezved/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>http://petrbouchal.xyz/vsezved/SUPPORT.html</loc>
+  </url>
+  <url>
+    <loc>http://petrbouchal.xyz/vsezved/authors.html</loc>
+  </url>
+  <url>
     <loc>http://petrbouchal.xyz/vsezved/index.html</loc>
+  </url>
+  <url>
+    <loc>http://petrbouchal.xyz/vsezved/news/index.html</loc>
+  </url>
+  <url>
+    <loc>http://petrbouchal.xyz/vsezved/reference/index.html</loc>
   </url>
   <url>
     <loc>http://petrbouchal.xyz/vsezved/reference/pipe.html</loc>
