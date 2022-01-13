@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.0.4",
+    "Version": "4.1.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -68,10 +68,10 @@
     },
     "arrow": {
       "Package": "arrow",
-      "Version": "2.0.0",
+      "Version": "6.0.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "04a9e87326777f5205bacdf3ec4ffa02"
+      "Hash": "da21509f51b9ad1386ca293e1042abf5"
     },
     "askpass": {
       "Package": "askpass",
@@ -439,10 +439,10 @@
     },
     "lifecycle": {
       "Package": "lifecycle",
-      "Version": "0.2.0",
+      "Version": "1.0.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "361811f31f71f8a617a9a68bf63f1f42"
+      "Hash": "a6b6d352e3ed897373ab19d8395c98d0"
     },
     "lubridate": {
       "Package": "lubridate",
@@ -687,15 +687,10 @@
     },
     "rvest": {
       "Package": "rvest",
-      "Version": "0.3.6.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "rvest",
-      "RemoteUsername": "tidyverse",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "4a25ef16cd376303c48d47d58d80713a1a1e91b1",
-      "Hash": "5f52e7b23c046d0a3131ce930faf86f9"
+      "Version": "1.0.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "bb099886deffecd6f9b298b7d4492943"
     },
     "scales": {
       "Package": "scales",
