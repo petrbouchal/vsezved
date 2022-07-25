@@ -6,26 +6,26 @@
 #'
 #' @inheritParams vz_get_register
 #' @param url URL; if left to NULL, will use internal default
-#' @param package_id used to point to per-region datasets (see `vz_list_registers()`); if left unset, defaults to state-wide data
+#' @param nuts3_kod used to point to per-region datasets; if left unset, defaults to state-wide data
 #'
 #' @return Path to downloaded (XML) file.
 #' @importFrom tidyr unnest_wider unnest_longer unnest unnest_auto
 #' @export
 vz_get_register_xml <- function(url = NULL,
-                                package_id = NULL,
+                                nuts3_kod = NULL,
                                 write_file = F,
                                 dest_dir = getwd()) {
 
-  if(is.null(url) & is.null(package_id)) {
-    urlf <- vz_get_ckan_url()
-    ui_info("Neither {ui_field('package_id')} nor {ui_field('url')} set.",
+  if(is.null(url) & is.null(nuts3_kod)) {
+    urlf <- vz_get_xml_url()
+    ui_info("Neither {ui_field('nuts3_kod')} nor {ui_field('url')} set.",
             "Getting data package {ui_value(register_ckan_id} from {ui_path(msmt_ckan_base_url)}")
-  } else if(is.null(url) & !is.null(package_id)) {
-    urlf <- vz_get_ckan_url(package_id = package_id)
-  } else if(!is.null(url) & !is.null(package_id)) {
+  } else if(is.null(url) & !is.null(nuts3_kod)) {
+    urlf <- vz_get_xml_url(nuts3_kod = nuts3_kod)
+  } else if(!is.null(url) & !is.null(nuts3_kod)) {
     urlf <- url
-    ui_info("Both {ui_field('package_id')} and {ui_field('url')} set.",
-            "Using {ui_field('package_id')} ({ui_value(package_id)})")
+    ui_info("Both {ui_field('nuts3_kod')} and {ui_field('url')} set.",
+            "Using {ui_field('nuts3_kod')} ({ui_value(nuts3_kod)})")
   } else {
     urlf <- url
   }
@@ -182,7 +182,7 @@ vz_load_register <- function(dl_path, tables = c("organisations", "schools", "lo
 #' @return a [tibble][tibble::tibble-package] or list of tibbles if multiple
 #'   table names are passed to `tables`.
 #' @export
-vz_get_register <- function(package_id = NULL,
+vz_get_register <- function(nuts3_kod = NULL,
                             url = NULL,
                             tables = c("organisations", "schools", "locations",
                                        "specialisations"),
@@ -207,25 +207,10 @@ vz_get_register <- function(package_id = NULL,
     ui_stop("Table(s) {ui_value(diff_tables)} not available")
   }
 
-  dl_path <- vz_get_register_xml(package_id = package_id,
+  dl_path <- vz_get_register_xml(nuts3_kod = nuts3_kod,
                                  write_file = write_file,
                                  dest_dir = dest_dir)
   ui_done("Data downloaded. Reading (this may take a while)")
   return(vz_load_register(dl_path, tables = tables))
-}
-
-
-#' List packages (registers) available from CKAN catalogue
-#'
-#' By default, searches MSMT
-#'
-#' @param url If left to NULL, searches MSMT catalogue at <data.msmt.cz>
-#' @return a character vector of IDs
-#' @export
-vz_list_registers <- function(url = NULL) {
-
-  if(is.null(url)) url <- msmt_ckan_base_url
-
-  ckanr::package_list(url = url, as = "table")
 }
 

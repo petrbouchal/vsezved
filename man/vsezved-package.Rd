@@ -6,9 +6,9 @@
 \alias{vsezved-package}
 \title{vsezved: Get data on Czech schools from <https://stistko.uiv.cz/registr/> and <https://data.msmt.cz/>}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Get access to data on Czech schools: the register open data provided by the Ministry of Education at <https://data.msmt.cz/> and non-open web database at <http://stistko.uiv.cz/registr/> This is mostly organisatoinal data on primary and secondary schools.
+Get access to data on Czech schools: the register open data provided by the Ministry of Education at \url{https://data.msmt.cz/} and non-open web database at \url{http://stistko.uiv.cz/registr/} This is mostly organisatoinal data on primary and secondary schools.
 }
 \seealso{
 Useful links:

@@ -5,7 +5,7 @@
 \title{Download and read school register}
 \usage{
 vz_get_register(
-  package_id = NULL,
+  nuts3_kod = NULL,
   url = NULL,
   tables = c("organisations", "schools", "locations", "specialisations"),
   write_file = TRUE,
@@ -13,7 +13,7 @@ vz_get_register(
 )
 }
 \arguments{
-\item{package_id}{used to point to per-region datasets (see \code{vz_list_registers()}); if left unset, defaults to state-wide data}
+\item{nuts3_kod}{used to point to per-region datasets; if left unset, defaults to state-wide data}
 
 \item{url}{URL; if left to NULL, will use internal default}
 

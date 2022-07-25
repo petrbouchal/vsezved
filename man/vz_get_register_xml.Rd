@@ -6,7 +6,7 @@
 \usage{
 vz_get_register_xml(
   url = NULL,
-  package_id = NULL,
+  nuts3_kod = NULL,
   write_file = F,
   dest_dir = getwd()
 )
@@ -14,7 +14,7 @@ vz_get_register_xml(
 \arguments{
 \item{url}{URL; if left to NULL, will use internal default}
 
-\item{package_id}{used to point to per-region datasets (see \code{vz_list_registers()}); if left unset, defaults to state-wide data}
+\item{nuts3_kod}{used to point to per-region datasets; if left unset, defaults to state-wide data}
 
 \item{write_file}{Whether to keep the downloaded XML file.
 Currently only writing to the working directory is supported.}

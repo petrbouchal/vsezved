@@ -1,5 +1,9 @@
 # vsezved (development version)
 
+## Bug fixes
+
+* `vz_*_register()` works again; it no longer relies on MŠMT's now defunct CKAN catalogue API. This is a quick fix - the proper way would be to work through the DCAT SPARQL endpoint for data.gov.cz.
+
 ## Improvements
 
 * functional high-level and more granular workflows for both directories and registers

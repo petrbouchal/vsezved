@@ -9,27 +9,24 @@ ua_list <- list(`User-Agent` = ua)
 
 
 
-#' Get URL of file in CKAN dataset
+#' Get URL of file in MSMT data store
 #'
 #' Currently assumes we are getting register XML data
 #'
-#' @param package_id package ID. Leave as NULL for whole-country school register.
-#' @param base_url CKAN base URL. Leave as NULL for MSMT CKAN.
+#' @param nuts3_kod NUTS code for region, e.g. CZ010 for Prague. Leave as NULL for whole-country school register.
+#' @param base_url Base URL. Leave as NULL for MSMT data store URL.
 #'
 #' @return a URL, character of length 1
 #' @export
-vz_get_ckan_url <- function(package_id = NULL, base_url = NULL) {
+vz_get_xml_url <- function(nuts3_kod = NULL, base_url = NULL) {
 
-  if(is.null(package_id)) package_id <- register_ckan_id
-  if(is.null(base_url)) base_url <- msmt_ckan_base_url
+  if(is.null(nuts3_kod)) nuts3_kod <- "celk"
+  if(is.null(base_url)) base_url <- msmtod_base_url
 
   check_server(base_url)
-  pkg_meta <- ckanr::package_show(package_id,
-                      url = msmt_ckan_base_url, as = "table")
-  if(length(pkg_meta$resources$format) == 1 & pkg_meta$resources$format == "XML") {
-    url <- pkg_meta$resources$url
-  } else {
-    usethis::ui_stop("x")
-  }
+
+  url <- paste0(base_url, "/VREJ", nuts3_kod, ".xml")
+  print(url)
+
   return(url)
 }
