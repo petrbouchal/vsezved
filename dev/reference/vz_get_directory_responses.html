@@ -27,7 +27,7 @@ and return HTTP response containing quasi-XLS attachments with data exports."><m
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
      
     <span class="caret"></span>
@@ -73,23 +73,28 @@ and return HTTP response containing quasi-XLS attachments with data exports.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">vz_get_directory_responses</span><span class="op">(</span>
-  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"addresses"</span>, <span class="st">"schools"</span>, <span class="st">"locations"</span>, <span class="st">"specialisations"</span><span class="op">)</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">vz_get_directory_responses</span><span class="op">(</span></span>
+<span>  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"addresses"</span>, <span class="st">"schools"</span>, <span class="st">"locations"</span>, <span class="st">"specialisations"</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>tables</dt>
 <dd><p>a character vector of tables to retrieve. See ** Tables** below.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>key-value pairs of search fields. Use <code>vz_get_search_fields()</code>
 to see a list of fields and their potential values.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>HTTP response parsable with response_to_quasixls or generally with httr.</p>
+    
+
+<p>HTTP response parsable with response_to_quasixls or generally with httr.</p>
     </div>
     <div id="tables">
     <h2>Tables</h2>
@@ -115,7 +120,7 @@ and no data dumps are made available).</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

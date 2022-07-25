@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
      
     <span class="caret"></span>
@@ -71,23 +71,28 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">vz_load_register</span><span class="op">(</span>
-  <span class="va">dl_path</span>,
-  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"organisations"</span>, <span class="st">"schools"</span>, <span class="st">"locations"</span>, <span class="st">"specialisations"</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">vz_load_register</span><span class="op">(</span></span>
+<span>  <span class="va">dl_path</span>,</span>
+<span>  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"organisations"</span>, <span class="st">"schools"</span>, <span class="st">"locations"</span>, <span class="st">"specialisations"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>dl_path</dt>
 <dd><p>Path to XML file output by <code><a href="vz_get_register_xml.html">vz_get_register_xml()</a></code>.</p></dd>
+
+
 <dt>tables</dt>
 <dd><p>Which tables to return. Can be one or more of "organisations",
 "schools", "locations" or "specialisations" (specialisations not yet available via the package).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a <a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a> or list of tibbles if multiple
+    
+
+<p>a <a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a> or list of tibbles if multiple
 table names are passed to <code>tables</code>.</p>
     </div>
 
@@ -103,7 +108,7 @@ table names are passed to <code>tables</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

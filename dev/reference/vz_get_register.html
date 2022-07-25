@@ -29,7 +29,7 @@ columns (this may change as the package matures.)"><meta property="og:image" con
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
      
     <span class="caret"></span>
@@ -77,33 +77,44 @@ columns (this may change as the package matures.)</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">vz_get_register</span><span class="op">(</span>
-  package_id <span class="op">=</span> <span class="cn">NULL</span>,
-  url <span class="op">=</span> <span class="cn">NULL</span>,
-  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"organisations"</span>, <span class="st">"schools"</span>, <span class="st">"locations"</span>, <span class="st">"specialisations"</span><span class="op">)</span>,
-  write_file <span class="op">=</span> <span class="cn">TRUE</span>,
-  dest_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">vz_get_register</span><span class="op">(</span></span>
+<span>  nuts3_kod <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  url <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"organisations"</span>, <span class="st">"schools"</span>, <span class="st">"locations"</span>, <span class="st">"specialisations"</span><span class="op">)</span>,</span>
+<span>  write_file <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  dest_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>package_id</dt>
-<dd><p>used to point to per-region datasets (see <code><a href="vz_list_registers.html">vz_list_registers()</a></code>); if left unset, defaults to state-wide data</p></dd>
+    <dl><dt>nuts3_kod</dt>
+<dd><p>used to point to per-region datasets; if left unset, defaults to state-wide data</p></dd>
+
+
 <dt>url</dt>
 <dd><p>URL; if left to NULL, will use internal default</p></dd>
+
+
 <dt>tables</dt>
 <dd><p>Which tables to return. Can be one or more of "organisations",
 "schools", "locations" or "specialisations" (specialisations not yet available via the package).</p></dd>
+
+
 <dt>write_file</dt>
 <dd><p>Whether to keep the downloaded XML file.
 Currently only writing to the working directory is supported.</p></dd>
+
+
 <dt>dest_dir</dt>
 <dd><p>Where to write the resulting XML</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a <a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a> or list of tibbles if multiple
+    
+
+<p>a <a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a> or list of tibbles if multiple
 table names are passed to <code>tables</code>.</p>
     </div>
 
@@ -119,7 +130,7 @@ table names are passed to <code>tables</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

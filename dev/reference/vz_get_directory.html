@@ -33,7 +33,7 @@ register."><meta property="og:image" content="http://petrbouchal.xyz/vsezved/ref
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
      
     <span class="caret"></span>
@@ -85,36 +85,55 @@ register.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">vz_get_directory</span><span class="op">(</span>
-  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"addresses"</span>, <span class="st">"schools"</span>, <span class="st">"locations"</span>, <span class="st">"specialisations"</span><span class="op">)</span>,
-  <span class="va">...</span>,
-  return_tibbles <span class="op">=</span> <span class="cn">FALSE</span>,
-  write_files <span class="op">=</span> <span class="cn">TRUE</span>,
-  dest_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">vz_get_directory</span><span class="op">(</span></span>
+<span>  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"addresses"</span>, <span class="st">"schools"</span>, <span class="st">"locations"</span>, <span class="st">"specialisations"</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  return_tibbles <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  write_files <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  dest_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>tables</dt>
 <dd><p>a character vector of tables to retrieve. See ** Tables** below.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>key-value pairs of search fields. Use <code>vz_get_search_fields()</code>
 to see a list of fields and their potential values.</p></dd>
+
+
 <dt>return_tibbles</dt>
 <dd><p>Whether to return the data (if TRUE) or only download the files (if FALSE).</p></dd>
+
+
 <dt>write_files</dt>
 <dd><p>Whether to write the XLS files locally.</p></dd>
+
+
 <dt>dest_dir</dt>
 <dd><p>Directory in which to write XLS files. Defaults to working directory.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of a <a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibbles</a> if return_tibbles = TRUE, a single tibble if only
+    
+
+<p>A list of a <a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibbles</a> if return_tibbles = TRUE, a single tibble if only
 one table name is passed <code>tables</code>, otherwise a character vector of paths
-to the downloaded *.xls files.
-if return_tibbles is TRUE, a named list of
-<a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibbles</a>, with a tibble for each table in <code>tables</code>with the corresponding name, unless the function was called with a <code>tables</code>parameter of length one, in which case the result is a tibble;
+to the downloaded *.xls files.</p>
+
+
+<p>if return_tibbles is TRUE, a named list of
+<a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibbles</a>, with a tibble for each table in <code>tables</code></p>
+
+
+<p>with the corresponding name, unless the function was called with a <code>tables</code></p>
+
+
+<p>parameter of length one, in which case the result is a tibble;
 if return_tibbles is FALSE, the result is a character vector of file paths.
 Note that the downloaded XLS files are in fact HTML files and you are best
 off loading them using <code><a href="vz_load_directory.html">vz_load_directory()</a></code> and tidying with
@@ -169,27 +188,29 @@ or use a pipeline management framework such as targets.</p></li>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">vz_get_directory</span><span class="op">(</span><span class="st">"addresses"</span>, uzemi <span class="op">=</span> <span class="st">"CZ010"</span>, return_tibbles <span class="op">=</span> <span class="cn">TRUE</span>, write_files <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Downloaded 581.49 kB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 968 × 30</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    red_izo   ico      zrizovatel uzemi kraj  okres spravni_urad orp   plny_nazev</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 600000206 49625918 6          CZ01… Hlav… Prah… B11000       1101  <span style="color: #949494;">"</span>Mateřská…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 600000222 61379310 6          CZ01… Hlav… Prah… B11000       1112  <span style="color: #949494;">"</span>Církevní…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 600000231 25765710 5          CZ01… Hlav… Prah… B11000       1112  <span style="color: #949494;">"</span>Modrý kl…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 600000249 60437171 6          CZ01… Hlav… Prah… B11000       1113  <span style="color: #949494;">"</span>Církevní…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 600000257 25143701 5          CZ01… Hlav… Prah… B11000       1113  <span style="color: #949494;">"</span>Bilingvá…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 600000265 25637941 5          CZ01… Hlav… Prah… B11000       1116  <span style="color: #949494;">"</span>Soukromá…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 600000273 25642863 5          CZ01… Hlav… Prah… B11000       1113  <span style="color: #949494;">"</span>Soukromá…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 600000290 49625063 6          CZ01… Hlav… Prah… B11000       1107  <span style="color: #949494;">"</span>Katolick…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 600000303 60447338 6          CZ01… Hlav… Prah… B11000       1108  <span style="color: #949494;">"</span>Církevní…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 600000311 61507962 5          CZ01… Hlav… Prah… B11000       1109  <span style="color: #949494;">"</span>Mateřská…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 958 more rows, and 21 more variables: zkraceny_nazev &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ulice &lt;chr&gt;, c_p &lt;chr&gt;, c_or &lt;chr&gt;, c_obce &lt;chr&gt;, psc &lt;chr&gt;, misto &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   telefon &lt;chr&gt;, fax &lt;chr&gt;, email_1 &lt;chr&gt;, email_2 &lt;chr&gt;, www &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   id_dat_schranky_subjektu &lt;chr&gt;, reditel &lt;chr&gt;, x &lt;chr&gt;, je_ovm &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   zuj &lt;chr&gt;, email_zrizovatele &lt;chr&gt;, id_dat_schranky_zrizovatele &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   pravni_forma_reditelstvi &lt;chr&gt;, datum_zapisu &lt;chr&gt;</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">vz_get_directory</span><span class="op">(</span><span class="st">"addresses"</span>, uzemi <span class="op">=</span> <span class="st">"CZ010"</span>, return_tibbles <span class="op">=</span> <span class="cn">TRUE</span>, write_files <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">ℹ</span> Downloaded 618.49 kB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 963 × 31</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    red_izo ico   zrizo…¹ uzemi kraj  okres sprav…² orp   nazev…³ plny_…⁴ zkrac…⁵</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 600000… 4962… 6       CZ01… Hlav… Prah… B11000  1101  Praha 1 <span style="color: #949494;">"</span>Mateř… <span style="color: #949494;">"</span>Mateř…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 600000… 6137… 6       CZ01… Hlav… Prah… B11000  1112  Praha … <span style="color: #949494;">"</span>Círke… <span style="color: #949494;">"</span>Círke…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 600000… 2576… 5       CZ01… Hlav… Prah… B11000  1112  Praha … <span style="color: #949494;">"</span>Modrý… <span style="color: #949494;">"</span>Modrý…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 600000… 6043… 6       CZ01… Hlav… Prah… B11000  1113  Praha … <span style="color: #949494;">"</span>Círke… <span style="color: #949494;">"</span>Círke…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 600000… 2514… 5       CZ01… Hlav… Prah… B11000  1113  Praha … <span style="color: #949494;">"</span>Bilin… <span style="color: #949494;">"</span>Bilin…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 600000… 2563… 5       CZ01… Hlav… Prah… B11000  1116  Praha … <span style="color: #949494;">"</span>Soukr… <span style="color: #949494;">"</span>Soukr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 600000… 2564… 5       CZ01… Hlav… Prah… B11000  1113  Praha … <span style="color: #949494;">"</span>Soukr… <span style="color: #949494;">"</span>Soukr…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 600000… 4962… 6       CZ01… Hlav… Prah… B11000  1107  Praha 7 <span style="color: #949494;">"</span>Katol… <span style="color: #949494;">"</span>Katol…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 600000… 6044… 6       CZ01… Hlav… Prah… B11000  1108  Praha 8 <span style="color: #949494;">"</span>Círke… <span style="color: #949494;">"</span>Círke…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 600000… 6150… 5       CZ01… Hlav… Prah… B11000  1109  Praha 9 <span style="color: #949494;">"</span>Mateř… <span style="color: #949494;">"</span>MŠ - …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 953 more rows, 20 more variables: ulice &lt;chr&gt;, c_p &lt;chr&gt;, c_or &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   c_obce &lt;chr&gt;, psc &lt;chr&gt;, misto &lt;chr&gt;, telefon &lt;chr&gt;, fax &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   email_1 &lt;chr&gt;, email_2 &lt;chr&gt;, www &lt;chr&gt;, id_dat_schranky_subjektu &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   reditel &lt;chr&gt;, x &lt;chr&gt;, je_ovm &lt;chr&gt;, zuj &lt;chr&gt;, email_zrizovatele &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   id_dat_schranky_zrizovatele &lt;chr&gt;, pravni_forma_reditelstvi &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   datum_zapisu &lt;chr&gt;, and abbreviated variable names ¹​zrizovatel,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​spravni_urad, ³​nazev_orp, ⁴​plny_nazev, ⁵​zkraceny_nazev</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -204,7 +225,7 @@ or use a pipeline management framework such as targets.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

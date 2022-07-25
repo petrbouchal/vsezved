@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     News
      
     <span class="caret"></span>
@@ -68,6 +68,10 @@
     <div class="section level2">
 <h2 class="page-header" data-toc-text="development version" id="vsezved-development-version">vsezved (development version)<a class="anchor" aria-label="anchor" href="#vsezved-development-version"></a></h2>
 <div class="section level3">
+<h3 id="bug-fixes-development-version">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
+<ul><li>
+<code>vz_*_register()</code> works again; it no longer relies on MŠMT’s now defunct CKAN catalogue API. This is a quick fix - the proper way would be to work through the DCAT SPARQL endpoint for data.gov.cz.</li></ul></div>
+<div class="section level3">
 <h3 id="improvements-development-version">Improvements<a class="anchor" aria-label="anchor" href="#improvements-development-version"></a></h3>
 <ul><li>functional high-level and more granular workflows for both directories and registers</li>
 <li>customisable file storage locations</li>
@@ -79,12 +83,10 @@
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.1.0" id="vsezved-010">vsezved 0.1.0<a class="anchor" aria-label="anchor" href="#vsezved-010"></a></h2>
-<ul><li>first barely working version. See <a href="https://petrbouchal.xyz/cz/post/vsezved" class="external-link">blog post</a> announcement (in Czech only)</li>
-</ul></div>
+<ul><li>first barely working version. See <a href="https://petrbouchal.xyz/cz/post/vsezved" class="external-link">blog post</a> announcement (in Czech only)</li></ul></div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.0.0.9000" id="vsezved-0009000">vsezved 0.0.0.9000<a class="anchor" aria-label="anchor" href="#vsezved-0009000"></a></h2>
-<ul><li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-</ul></div>
+<ul><li>Added a <code>NEWS.md</code> file to track changes to the package.</li></ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -99,7 +101,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
