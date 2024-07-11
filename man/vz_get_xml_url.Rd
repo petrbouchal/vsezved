@@ -7,7 +7,7 @@
 vz_get_xml_url(nuts3_kod = NULL, base_url = NULL)
 }
 \arguments{
-\item{nuts3_kod}{NUTS code for region, e.g. CZ0100 for Prague. Leave as NULL for whole-country school register.}
+\item{nuts3_kod}{NUTS code for region, e.g. CZ010 for Prague. Leave as NULL for whole-country school register.}
 
 \item{base_url}{Base URL. Leave as NULL for MSMT data store URL.}
 }

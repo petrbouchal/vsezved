@@ -119,9 +119,9 @@ vz_get_directory_responses <- function(tables = c("addresses", "schools",
   }
 
   if("addresses" %in% tabs) responses <- add_dir_table(responses, export_forms[[1]], "addresses", "EX")
-  if("schools" %in% tabs) responses <- add_dir_table(responses, export_forms[[2]], "schools", "EXX")
-  if("locations" %in% tabs) responses <- add_dir_table(responses, export_forms[[3]], "locations", "EXM")
-  if("specialisations" %in% tabs) responses <- add_dir_table(responses, export_forms[[4]], "specialisations", "EXO")
+  if("schools" %in% tabs) responses <- add_dir_table(responses, export_forms[[3]], "schools", "EXX")
+  if("locations" %in% tabs) responses <- add_dir_table(responses, export_forms[[4]], "locations", "EXM")
+  if("specialisations" %in% tabs) responses <- add_dir_table(responses, export_forms[[5]], "specialisations", "EXO")
 
   return(responses)
 }

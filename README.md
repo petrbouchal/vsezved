@@ -21,8 +21,9 @@ It will also provide vignettes documenting the data.
 Full documentation is at
 [petrbouchal.xyz/vsezved](https://petrbouchal.xyz/vsezved).
 
-Intro blogpost in Czech is at
-[petrbouchal.xyz/cz/post/vsezved](https://petrbouchal.xyz/cz/post/vsezved)
+**The best overview of the data and usage are currently (in Czech) in
+the blogpost at
+[petrbouchal.xyz/cz/post/vsezved](https://petrbouchal.xyz/cz/post/vsezved)**
 
 ## Installation
 
@@ -54,13 +55,18 @@ library(vsezved)
 
 The package supports two approaches … TO DO
 
+## Where the data is
+
+-   
+
 ## Credits
 
 ### Data sources
 
 Not affiliated with the Czech Ministry of Education or the Education
-Information Authority who publish the data. Their people however deserve
-credit for getting the data out there.
+Information Institute who publish the data (the latter no longer
+exists). Their people however deserve credit for getting the data out
+there.
 
 ### Name and logo
 

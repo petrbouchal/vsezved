@@ -3,6 +3,8 @@
 ## Bug fixes
 
 * `vz_*_register()` works again; it no longer relies on MŠMT's now defunct CKAN catalogue API. This is a quick fix - the proper way would be to work through the DCAT SPARQL endpoint for data.gov.cz.
+* new functions `*_stistko_*()` for getting codelists ("číselník") from the stistko server
+* fixed `vz_get_directory()` to accommodate changes on the server
 
 ## Improvements
 
