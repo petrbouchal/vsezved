@@ -5,7 +5,7 @@
 #' @param code A character string representing the ciselnik code.
 #' @return A character string containing the URL for the specified ciselnik code.
 #' @examples
-#' get_stistko_ciselnik_url("BASO")
+#' vz_get_codelist_url("BASO")
 #' @export
 vz_get_codelist_url <- function(code) {
   code <- toupper(code)
@@ -21,7 +21,7 @@ vz_get_codelist_url <- function(code) {
 #' @param dest_dir A character string specifying the destination directory. Defaults to tempdir().
 #' @return A character string containing the path to the downloaded HTML file.
 #' @examples
-#' get_stistko_ciselnik("BASO")
+#' vz_grab_codelist("BASO")
 #' @export
 vz_grab_codelist <- function(code, dest_dir = NULL) {
   if (is.null(dest_dir)) {
@@ -41,7 +41,7 @@ vz_grab_codelist <- function(code, dest_dir = NULL) {
 #' @param dest_dir A character string specifying the destination directory. Defaults to tempdir().
 #' @return A character string containing the path to the downloaded HTML file.
 #' @examples
-#' download_stistko_ciselnik("http://stistko.uiv.cz/katalog/ciselnik11x.asp?idc=BASO&aap=on")
+#' vz_download_codelist("http://stistko.uiv.cz/katalog/ciselnik11x.asp?idc=BASO&aap=on")
 #' @export
 vz_download_codelist <- function(url, dest_dir = NULL) {
   if (is.null(dest_dir)) {
@@ -85,9 +85,9 @@ vz_read_codelist <- function(path) {
 #' @param code A character string representing the code of the codelist.
 #' @return A data frame containing the processed data from the ciselnik.
 #' @examples
-#' get_stistko_ciselnik("BASO")
+#' vz_get_codelist("BASO")
 #' @export
-get_stistko_ciselnik <- function(code, dest_dir = NULL) {
+vz_get_codelist <- function(code, dest_dir = NULL) {
   if (is.null(dest_dir)) {
     dest_dir <- tempdir()
   }

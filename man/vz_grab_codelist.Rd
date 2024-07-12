@@ -18,5 +18,5 @@ A character string containing the path to the downloaded HTML file.
 Downloads the HTML page for the specified STISTKO codelist code.
 }
 \examples{
-get_stistko_ciselnik("BASO")
+vz_grab_codelist("BASO")
 }

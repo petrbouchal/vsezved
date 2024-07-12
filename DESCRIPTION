@@ -35,5 +35,3 @@ Suggests:
 Config/testthat/edition: 3
 URL: http://petrbouchal.xyz/vsezved, https://github.com/petrbouchal/vsezved
 BugReports: https://github.com/petrbouchal/vsezved/issues
-Remotes: 
-    tidyverse/rvest

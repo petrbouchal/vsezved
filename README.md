@@ -9,7 +9,7 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Docs
 built](https://github.com/petrbouchal/vsezved/workflows/pkgdown/badge.svg)](https://github.com/petrbouchal/vsezved/actions)
-[![R-CMD-check](https://github.com/petrbouchal/vsezved/workflows/R-CMD-check/badge.svg)](https://github.com/petrbouchal/vsezved/actions)
+[![R-CMD-check](https://github.com/petrbouchal/vsezved/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/petrbouchal/vsezved/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of vsezved is to provide easy access to the Czech school
@@ -57,7 +57,7 @@ The package supports two approaches … TO DO
 
 ## Where the data is
 
--   
+- 
 
 ## Credits
 

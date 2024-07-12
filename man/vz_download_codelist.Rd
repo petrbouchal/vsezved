@@ -18,5 +18,5 @@ A character string containing the path to the downloaded HTML file.
 Downloads the HTML page from the given URL.
 }
 \examples{
-download_stistko_ciselnik("http://stistko.uiv.cz/katalog/ciselnik11x.asp?idc=BASO&aap=on")
+vz_download_codelist("http://stistko.uiv.cz/katalog/ciselnik11x.asp?idc=BASO&aap=on")
 }

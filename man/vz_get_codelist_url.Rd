@@ -16,5 +16,5 @@ A character string containing the URL for the specified ciselnik code.
 Constructs the URL for the specified STISTKO codelist code.
 }
 \examples{
-get_stistko_ciselnik_url("BASO")
+vz_get_codelist_url("BASO")
 }
