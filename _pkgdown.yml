@@ -1,34 +1,48 @@
 home:
   title: An R package for using data on Czech schools
-  description: Get data on Czech schools from <https://stistko.uiv.cz/registr/> and <https://data.msmt.cz/>
-
-url: http://petrbouchal.xyz/vsezved
-
+  description: Get data on Czech schools from <https://stistko.uiv.cz/registr/> and
+    <https://data.msmt.cz/>
 development:
   mode: auto
-
 navbar:
+  bg: primary
   structure:
-    left:  [home, intro, reference, articles, news]
-    right: [github, pbhome]
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - news
+    right:
+    - github
+    - pbhome
   components:
     pbhome:
-      icon: "fa-asterisk fa-lg"
+      icon: fa-asterisk fa-lg
       href: https://petrbouchal.xyz
 authors:
   Petr Bouchal:
     href: https://petrbouchal.xyz
-
+url: https://petrbouchal.xyz/vsezved/
 template:
   opengraph:
     image:
       src: man/figures/card.png
-      alt: "vsezved: An R package for using data on Czech schools"
+      alt: 'vsezved: An R package for using data on Czech schools'
     twitter:
-      creator: "@petrbouchal"
+      creator: '@petrbouchal'
       card: summary_large_image
+  bootstrap: 5
+  bslib:
+    base_font: "IBM Plex Sans"
+    heading_font: "IBM Plex Sans"
+    code_font: "IBM Plex Mono"
+    bg: "#fff"
+    fg: "#00f"
+    primary: "#00f"
 
 news:
- releases:
- - text: "vsezved 0.0.1"
-   href: https://petrbouchal.xyz/cz/post/vsezved
+  releases:
+  - text: vsezved 0.0.1
+    href: https://petrbouchal.xyz/cz/post/vsezved
+

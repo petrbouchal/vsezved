@@ -33,5 +33,5 @@ Suggests:
     testthat (>= 3.0.0),
     withr (>= 2.3.0)
 Config/testthat/edition: 3
-URL: http://petrbouchal.xyz/vsezved, https://github.com/petrbouchal/vsezved
+URL: https://github.com/petrbouchal/vsezved, https://petrbouchal.xyz/vsezved/
 BugReports: https://github.com/petrbouchal/vsezved/issues
