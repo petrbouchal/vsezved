@@ -72,7 +72,7 @@ vz_read_codelist <- function(path) {
   dt_c <- dt_r |>
     dplyr::slice_head(n = nrow(dt_r) - 1) |> # remove nonsense bottom row
     dplyr::mutate(dplyr::across(dplyr::everything(), stringr::str_squish),
-                  datkp = strings::str_remove(datkp, "\\;"),
+                  datkp = stringr::str_remove(datkp, "\\;"),
                   dplyr::across(c(datkp, datzp), lubridate::parse_date_time, orders = "d.m.Y"),
     )
   return(dt_c)
