@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.0
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-07-12T09:20Z
+last_built: 2024-07-12T09:31Z
 urls:
   reference: https://petrbouchal.xyz/vsezved/reference
   article: https://petrbouchal.xyz/vsezved/articles
