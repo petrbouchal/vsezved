@@ -26,7 +26,8 @@ Imports:
     lifecycle (>= 0.2.0),
     httr (>= 1.4.2),
     curl (>= 4.3),
-    prettyunits
+    prettyunits,
+    readr
 RdMacros:
     lifecycle
 Suggests: 

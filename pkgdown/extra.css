@@ -1,8 +1,6 @@
 @import url('https://petrbouchal.xyz/fonts/ibm-plex-mono-all-400-700.css');
 @import url('https://petrbouchal.xyz/fonts/ibm-plex-sans-all-400-700.css');
 
-h1, h2, h3, h4, h5 {color: #0000ff;}
-
 .bs-callout {
     margin:20px 0;
     padding:20px;

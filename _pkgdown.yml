@@ -14,7 +14,7 @@ navbar:
     - articles
     - news
     right:
-    # - lightswitch
+    - lightswitch
     - github
     - pbhome
   components:
@@ -44,6 +44,11 @@ template:
     primary: "#0000ff"
     code-bg: "#e3f1ff"
     pre-bg: "#e3f1ff"
+    pkgdown-navbar-bg: '#0000ff'
+    pkgdown-navbar-color: '#ffffff'
+    navbar-brand-color: "#ffffff"
+    nav-link-color: "#ffffff"
+    headings-color: "#0000ff"
 
 news:
   releases:
