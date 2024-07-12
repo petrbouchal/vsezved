@@ -1,66 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/SUPPORT.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/authors.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/index.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/news/index.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/pipe.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/vsezved-package.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/vz_get_directory.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/vz_get_directory_responses.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/vz_get_register.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/vz_get_register_xml.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/vz_get_search_form.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/vz_get_search_page.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/vz_get_xml_url.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/vz_load_directory.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/vz_load_register.html</loc>
-  </url>
-  <url>
-    <loc>http://petrbouchal.xyz/vsezved/reference/vz_write_directory_quasixls.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/CONTRIBUTING.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/LICENSE-text.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/LICENSE.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/SUPPORT.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/authors.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/index.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/news/index.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/index.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/pipe.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vsezved-package.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_download_codelist.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_get_codelist.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_get_codelist_url.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_get_directory.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_get_directory_responses.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_get_register.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_get_register_xml.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_get_search_form.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_get_search_page.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_get_xml_url.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_grab_codelist.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_load_directory.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_load_register.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_read_codelist.html</loc></url>
+<url><loc>https://petrbouchal.xyz/vsezved/dev/reference/vz_write_directory_quasixls.html</loc></url>
 </urlset>
+
