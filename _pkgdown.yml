@@ -14,6 +14,7 @@ navbar:
     - articles
     - news
     right:
+    # - lightswitch
     - github
     - pbhome
   components:
@@ -33,14 +34,16 @@ template:
       creator: '@petrbouchal'
       card: summary_large_image
   bootstrap: 5
-  light-switch: true
+  light-switch: false
   bslib:
     base_font: "IBM Plex Sans"
     heading_font: "IBM Plex Sans"
     code_font: "IBM Plex Mono"
-    bg: "#fff"
-    fg: "#000"
-    primary: "#00f"
+    bg: "#ffffff"
+    fg: "#000000"
+    primary: "#0000ff"
+    code-bg: "#e3f1ff"
+    pre-bg: "#e3f1ff"
 
 news:
   releases:
