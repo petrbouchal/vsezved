@@ -8,6 +8,8 @@ vz_get_codelist(code, dest_dir = NULL)
 }
 \arguments{
 \item{code}{A character string representing the code of the codelist.}
+
+\item{dest_dir}{Where to save the downloaded file. Defaults to \code{tempdir()}.}
 }
 \value{
 A data frame containing the processed data from the ciselnik.

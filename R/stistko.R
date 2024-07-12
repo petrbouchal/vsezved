@@ -83,6 +83,7 @@ vz_read_codelist <- function(path) {
 #' Reads and processes the HTML file of a Stistko ciselnik based on a code
 #'
 #' @param code A character string representing the code of the codelist.
+#' @param dest_dir Where to save the downloaded file. Defaults to `tempdir()`.
 #' @return A data frame containing the processed data from the ciselnik.
 #' @examples
 #' vz_get_codelist("BASO")

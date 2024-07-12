@@ -28,7 +28,8 @@ Imports:
     curl (>= 4.3),
     prettyunits,
     readr,
-    stringr
+    stringr,
+    lubridate
 RdMacros:
     lifecycle
 Suggests: 
