@@ -1,4 +1,4 @@
-# vsezved (development version)
+# vsezved 0.2.0
 
 ## Bug fixes
 

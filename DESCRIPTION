@@ -1,6 +1,6 @@
 Package: vsezved
 Title: Get data on Czech schools from <https://stistko.uiv.cz/registr/> and <https://data.msmt.cz/>
-Version: 0.1.0.9000
+Version: 0.2.0
 Authors@R: 
     person(given = "Petr",
            family = "Bouchal",
