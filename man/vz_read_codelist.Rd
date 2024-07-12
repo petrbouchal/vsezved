@@ -2,7 +2,7 @@
 % Please edit documentation in R/stistko.R
 \name{vz_read_codelist}
 \alias{vz_read_codelist}
-\title{Read STISTKO Ciselnik}
+\title{Read Stistko Ciselnik}
 \usage{
 vz_read_codelist(path)
 }
@@ -13,5 +13,5 @@ vz_read_codelist(path)
 A data frame containing the processed data from the ciselnik.
 }
 \description{
-Reads and processes the HTML file of a STISTKO ciselnik.
+Reads and processes the HTML file of a Stistko ciselnik.
 }

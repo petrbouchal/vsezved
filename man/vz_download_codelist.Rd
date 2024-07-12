@@ -2,7 +2,7 @@
 % Please edit documentation in R/stistko.R
 \name{vz_download_codelist}
 \alias{vz_download_codelist}
-\title{Download STISTKO Ciselnik}
+\title{Download Stistko Ciselnik}
 \usage{
 vz_download_codelist(url, dest_dir = NULL)
 }

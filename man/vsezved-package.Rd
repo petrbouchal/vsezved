@@ -13,8 +13,8 @@ Get access to data on Czech schools: the register open data provided by the Mini
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://petrbouchal.xyz/vsezved}
   \item \url{https://github.com/petrbouchal/vsezved}
+  \item \url{https://petrbouchal.xyz/vsezved/}
   \item Report bugs at \url{https://github.com/petrbouchal/vsezved/issues}
 }
 

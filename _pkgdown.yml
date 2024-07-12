@@ -33,12 +33,13 @@ template:
       creator: '@petrbouchal'
       card: summary_large_image
   bootstrap: 5
+  light-switch: true
   bslib:
     base_font: "IBM Plex Sans"
     heading_font: "IBM Plex Sans"
     code_font: "IBM Plex Mono"
     bg: "#fff"
-    fg: "#00f"
+    fg: "#000"
     primary: "#00f"
 
 news:

@@ -1,6 +1,6 @@
-#' Get URL for STISTKO Ciselnik
+#' Get URL for Stistko Ciselnik
 #'
-#' Constructs the URL for the specified STISTKO codelist code.
+#' Constructs the URL for the specified Stistko codelist code.
 #'
 #' @param code A character string representing the ciselnik code.
 #' @return A character string containing the URL for the specified ciselnik code.
@@ -13,9 +13,9 @@ vz_get_codelist_url <- function(code) {
   return(url)
 }
 
-#' Get STISTKO Ciselnik
+#' Get Stistko Ciselnik
 #'
-#' Downloads the HTML page for the specified STISTKO codelist code.
+#' Downloads the HTML page for the specified Stistko codelist code.
 #'
 #' @param code A character string representing the ciselnik code.
 #' @param dest_dir A character string specifying the destination directory. Defaults to tempdir().
@@ -33,7 +33,7 @@ vz_grab_codelist <- function(code, dest_dir = NULL) {
   return(destfile)
 }
 
-#' Download STISTKO Ciselnik
+#' Download Stistko Ciselnik
 #'
 #' Downloads the HTML page from the given URL.
 #'
@@ -53,9 +53,9 @@ vz_download_codelist <- function(url, dest_dir = NULL) {
   return(destfile)
 }
 
-#' Read STISTKO Ciselnik
+#' Read Stistko Ciselnik
 #'
-#' Reads and processes the HTML file of a STISTKO ciselnik.
+#' Reads and processes the HTML file of a Stistko ciselnik.
 #'
 #' @param path A character string representing the path to the HTML file.
 #' @return A data frame containing the processed data from the ciselnik.
@@ -72,15 +72,15 @@ vz_read_codelist <- function(path) {
   dt_c <- dt_r |>
     dplyr::slice_head(n = nrow(dt_r) - 1) |> # remove nonsense bottom row
     dplyr::mutate(dplyr::across(dplyr::everything(), stringr::str_squish),
-                  datkp = str_remove(datkp, "\\;"),
+                  datkp = strings::str_remove(datkp, "\\;"),
                   dplyr::across(c(datkp, datzp), lubridate::parse_date_time, orders = "d.m.Y"),
     )
   return(dt_c)
 }
 
-#' Get STISTKO Ciselnik (df from code)
+#' Get Stistko Ciselnik (df from code)
 #'
-#' Reads and processes the HTML file of a STISTKO ciselnik based on a code
+#' Reads and processes the HTML file of a Stistko ciselnik based on a code
 #'
 #' @param code A character string representing the code of the codelist.
 #' @return A data frame containing the processed data from the ciselnik.

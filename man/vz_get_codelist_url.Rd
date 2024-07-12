@@ -2,7 +2,7 @@
 % Please edit documentation in R/stistko.R
 \name{vz_get_codelist_url}
 \alias{vz_get_codelist_url}
-\title{Get URL for STISTKO Ciselnik}
+\title{Get URL for Stistko Ciselnik}
 \usage{
 vz_get_codelist_url(code)
 }
@@ -13,7 +13,7 @@ vz_get_codelist_url(code)
 A character string containing the URL for the specified ciselnik code.
 }
 \description{
-Constructs the URL for the specified STISTKO codelist code.
+Constructs the URL for the specified Stistko codelist code.
 }
 \examples{
 vz_get_codelist_url("BASO")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/stistko.R
 \name{vz_grab_codelist}
 \alias{vz_grab_codelist}
-\title{Get STISTKO Ciselnik}
+\title{Get Stistko Ciselnik}
 \usage{
 vz_grab_codelist(code, dest_dir = NULL)
 }
@@ -15,7 +15,7 @@ vz_grab_codelist(code, dest_dir = NULL)
 A character string containing the path to the downloaded HTML file.
 }
 \description{
-Downloads the HTML page for the specified STISTKO codelist code.
+Downloads the HTML page for the specified Stistko codelist code.
 }
 \examples{
 vz_grab_codelist("BASO")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/stistko.R
 \name{vz_get_codelist}
 \alias{vz_get_codelist}
-\title{Get STISTKO Ciselnik (df from code)}
+\title{Get Stistko Ciselnik (df from code)}
 \usage{
 vz_get_codelist(code, dest_dir = NULL)
 }
@@ -13,7 +13,7 @@ vz_get_codelist(code, dest_dir = NULL)
 A data frame containing the processed data from the ciselnik.
 }
 \description{
-Reads and processes the HTML file of a STISTKO ciselnik based on a code
+Reads and processes the HTML file of a Stistko ciselnik based on a code
 }
 \examples{
 vz_get_codelist("BASO")
